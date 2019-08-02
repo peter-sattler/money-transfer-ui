@@ -20,6 +20,7 @@ npm start
 :moneybag: Implemented using HTML, CSS and Javascript (including AJAX) only  
 :moneybag: Static content is served via an embedded Express web server (https://expressjs.com)   
 :moneybag: No heavy frameworks were used  
+:moneybag: Home page is available at http://localhost:3000
 
 Pete Sattler  
 01 August 2019  

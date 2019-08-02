@@ -18,10 +18,9 @@ npm start
 ## Implementation Details
 
 :moneybag: Implemented using HTML, CSS and Javascript (including AJAX) only  
-:moneybag: Static content is served via an embedded Express web server (https://expressjs.com) 
-:moneybag: No heavy frameworks are used
+:moneybag: Static content is served via an embedded Express web server (https://expressjs.com)   
+:moneybag: No heavy frameworks were used  
 
 Pete Sattler  
 01 August 2019  
 _peter@sattler22.net_  
-

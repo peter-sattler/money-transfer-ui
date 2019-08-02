@@ -1,4 +1,4 @@
-# Money Transfer REST Web UI
+# Money Transfer Web UI
 ![Money Stack](https://github.com/peter-sattler/money-transfer-api/blob/master/img/money-stack.gif)
 
 Design and develop a web project on any subject you wish, providing that the content of the project includes dynamic DHTML effects/behavior, event handling, at least one form with form validation, and cookies or web storage. All back-end related services are provided by my REST API project (https://github.com/peter-sattler/money-transfer-api) which also also available here on Github.

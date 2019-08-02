@@ -1,4 +1,4 @@
-# Money Transfer REST Web UI
+# Money Transfer Web UI
 ![Money Stack](https://github.com/peter-sattler/money-transfer-api/blob/master/img/money-stack.gif)
 
 Design and develop a web project on any subject you wish, providing that the content of the project includes dynamic DHTML effects/behavior, event handling, at least one form with form validation, and cookies or web storage. All back-end related services are provided by my REST API project (https://github.com/peter-sattler/money-transfer-api) which also also available here on Github.
@@ -20,6 +20,7 @@ npm start
 :moneybag: Implemented using HTML, CSS and Javascript (including AJAX) only  
 :moneybag: Static content is served via an embedded Express web server (https://expressjs.com)   
 :moneybag: No heavy frameworks were used  
+:moneybag: Home page is available at http://localhost:3000
 
 Pete Sattler  
 01 August 2019  

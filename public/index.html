@@ -49,124 +49,48 @@
          <div>
              <p>Copyright&copy; 2019 Pete's World Banking Empire, L.L.C</p>
         </div> 
-    </body>       
+    </body>
     <script>
-        var data = [
-          {
-            "id": 1,
-            "firstName": "Daffy",
-            "lastName": "Duck",
-            "gender": "MALE",
-            "address": {
-              "street": "899 Doughty Street",
-              "city": "Kilbourne",
-              "state": "MP",
-              "zip": "79636"
-            },
-            "phone": "(996) 577-2634",
-            "email": "daffy.duck@toontown.com",
-            "images": [
-              {
-                "src": "/images/daffy-duck-1.png",
-                "alt": "Daffy Duck Image #1"
-              },
-              {
-                "src": "/images/daffy-duck-2.png",
-                "alt": "Daffy Duck Image #2"
-              },
-              {
-                "src": "/images/daffy-duck-3.png",
-                "alt": "Daffy Duck Image #3"
-              }
-            ],
-            "birthDate": [ 2000, 11, 1 ],
-            "joinedDate": [ 2004, 2, 13, 5, 59, 34 ]
-          },
-          {
-            "id": 2,
-            "firstName": "Foghorn",
-            "lastName": "Leghorn",
-            "gender": "MALE",
-            "address": {
-              "street": "155 Coles Street",
-              "city": "Inkerman",
-              "state": "PA",
-              "zip": "74945"
-            },
-            "phone": "(807) 559-3340",
-            "email": "foghorn.leghorn@toontown.com",
-            "images": [
-              {
-                "src": "/images/foghorn-leghorn-1.png",
-                "alt": "Foghorn Leghorn Image #1"
-              },
-              {
-                "src": "/images/foghorn-leghorn-2.png",
-                "alt": "Foghorn Leghorn Image #2"
-              },
-              {
-                "src": "/images/foghorn-leghorn-3.png",
-                "alt": "Foghorn Leghorn Image #3"
-              }
-            ],
-            "birthDate": [ 1958, 5, 6 ],
-            "joinedDate": [ 2006, 3, 15, 16, 16, 55 ]
-          },
-          {
-            "id": 3,
-            "firstName": "Marvin",
-            "lastName": "Martian",
-            "gender": "MALE",
-            "address": {
-              "street": "358 Malta Street",
-              "city": "Volta",
-              "state": "MA",
-              "zip": "92136"
-            },
-            "phone": "(958) 475-2762",
-            "email": "marvin.martian@toontown.com",
-            "images": [
-              {
-                "src": "/images/marvin-the-martian-1.png",
-                "alt": "Marvin the Martian Image #1"
-              },
-              {
-                "src": "/images/marvin-the-martian-2.png",
-                "alt": "Marvin the Martian Image #2"
-              },
-              {
-                "src": "/images/marvin-the-martian-3.png",
-                "alt": "Marvin the Martian Image #3"
-              }
-            ],
-            "birthDate": [ 1948, 1, 2 ],
-            "joinedDate": [ 2013, 1, 15, 6, 54 ]
-          }
-        ];
-
-        var content = "<table>";
-        for(var row = 0; row < data.length; row++) {
-            if(row == 0) {
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", "http://localhost:8080/api/money-transfer/customers");
+        xhr.onreadystatechange = function() {
+            if(xhr.readyState === 4) {
+                if(xhr.status === 200) {
+                    var data = JSON.parse(xhr.responseText);
+                    displayCustomers(data);
+                }
+                else {
+                    alert("No customer data found!!!");
+                }
+            }
+        };
+        xhr.send();
+        
+        function displayCustomers(data) {
+            var content = "<table>";
+            for(var row = 0; row < data.length; row++) {
+                if(row == 0) {
+                    content += "<tr>";
+                    content += "<th>Cust ID</th>";
+                    content += "<th>First Name</th>";
+                    content += "<th>Last Name</th>";
+                    content += "<th>Gender</th>";
+                    content += '<th colspan="4">Address</th>';
+                    content += "</tr>";
+                }
                 content += "<tr>";
-                content += "<th>Cust ID</th>";
-                content += "<th>First Name</th>";
-                content += "<th>Last Name</th>"; 
-                content += "<th>Gender</th>";
-                content += '<th colspan="4">Address</th>'; 
+                content += "<td>" + data[row].id + "</td>";
+                content += "<td>" + data[row].firstName + "</td>";
+                content += "<td>" + data[row].lastName + "</td>";
+                content += "<td>" + data[row].gender + "</td>";
+                content += "<td>" + data[row].address.street + "</td>";
+                content += "<td>" + data[row].address.city + "</td>";
+                content += "<td>" + data[row].address.state + "</td>";
+                content += "<td>" + data[row].address.zip + "</td>";
                 content += "</tr>";
             }
-            content += "<tr>";
-            content += "<td>" + data[row].id + "</td>";
-            content += "<td>" + data[row].firstName + "</td>";
-            content += "<td>" + data[row].lastName + "</td>";
-            content += "<td>" + data[row].gender + "</td>";
-            content += "<td>" + data[row].address.street + "</td>";
-            content += "<td>" + data[row].address.city + "</td>";
-            content += "<td>" + data[row].address.state + "</td>";
-            content += "<td>" + data[row].address.zip + "</td>";
-            content += "</tr>";
+            content += "</table>";
+            document.getElementById("customers").innerHTML = content;
         }
-        content += "</table>";
-        document.getElementById("customers").innerHTML = content;
     </script>
 </html>

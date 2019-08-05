@@ -1,0 +1,8 @@
+.header img {
+    float: left;
+    height: 15%;
+    width: 15%;
+}
+.header h1 {
+    line-height: 200px;
+}

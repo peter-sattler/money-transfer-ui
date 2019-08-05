@@ -6,26 +6,9 @@
         <meta name="description" content="NYU SPS INFO1-CE9755 Final Project">
         <meta name="email" content="peter@sattler22.net ">
         <title id="title">Pete's World Banking Empire: Home Page</title>
+        <link rel="stylesheet" href="header.css">
+        <link rel="stylesheet" href="navbar.css">
         <style>
-            .header img {
-                float: left;
-                height: 15%;
-                width: 15%;
-            }
-            .header h1 {
-                line-height: 200px;
-            }
-            ul {
-                list-style-type: none;
-                text-align: left;
-                text-justify: auto
-                margin: 0;
-                padding: 0;
-            }
-            li {
-                line-height: 40px;
-                display: inline;
-            }
             table, th, td {
                 border: 1px solid black;
             }
@@ -39,23 +22,20 @@
                 background-color: #f2f2f2
             }
         </style>
+        <script src="/javascripts/include.js"></script>
     </head>
     <body>
-        <div class="header">
-            <img src="/images/money-stack.gif" alt="Stacks of $$$">
-            <h1>Pete's World Banking Empire</h1>
-        </div>
+        <div w3-include-html="/header.html"></div>
         <div class="navbar">
             <ul>
                 <li><a href="addcust.html">Add Customer</a></li>
             </ul>
         </div>     
         <div id="customers"></div>
-         <div>
-             <p>Copyright&copy; 2019 Pete's World Banking Empire, L.L.C</p>
-        </div> 
+        <div w3-include-html="/footer.html"></div>
     </body>
     <script>
+        includeHTML();
         var xhr = new XMLHttpRequest();
         xhr.open("GET", "http://localhost:8080/api/money-transfer/customers");
         xhr.onreadystatechange = function() {

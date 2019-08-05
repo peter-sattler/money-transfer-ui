@@ -7,6 +7,14 @@
         <meta name="email" content="peter@sattler22.net ">
         <title id="title">Pete's World Banking Empire: Home Page</title>
         <style>
+            .header img {
+                float: left;
+                height: 15%;
+                width: 15%;
+            }
+            .header h1 {
+                line-height: 200px;
+            }
             ul {
                 list-style-type: none;
                 text-align: left;
@@ -34,15 +42,12 @@
     </head>
     <body>
         <div class="header">
-            <ul>
-                <li><img src="/images/money-stack.gif" alt="Stacks of $$$" height="66" width="84"></li>
-                <li>Pete's World Banking Empire</li>
-            </ul>
+            <img src="/images/money-stack.gif" alt="Stacks of $$$">
+            <h1>Pete's World Banking Empire</h1>
         </div>
         <div class="navbar">
             <ul>
-                <li><a href="addCustomer.html">Add Customer</a></li>
-                <li><a href="aboutUs.html">About Us</a></li>
+                <li><a href="addcust.html">Add Customer</a></li>
             </ul>
         </div>     
         <div id="customers"></div>
@@ -71,10 +76,11 @@
             for(var row = 0; row < data.length; row++) {
                 if(row == 0) {
                     content += "<tr>";
-                    content += "<th>Cust ID</th>";
+                    content += "<th>Customer ID</th>";
                     content += "<th>First Name</th>";
                     content += "<th>Last Name</th>";
                     content += "<th>Gender</th>";
+                    content += "<th>Phone</th>";
                     content += '<th colspan="4">Address</th>';
                     content += "</tr>";
                 }
@@ -83,6 +89,7 @@
                 content += "<td>" + data[row].firstName + "</td>";
                 content += "<td>" + data[row].lastName + "</td>";
                 content += "<td>" + data[row].gender + "</td>";
+                content += "<td>" + data[row].phone + "</td>";
                 content += "<td>" + data[row].address.street + "</td>";
                 content += "<td>" + data[row].address.city + "</td>";
                 content += "<td>" + data[row].address.state + "</td>";

@@ -6,6 +6,7 @@
         <meta name="description" content="NYU SPS INFO1-CE9755 Final Project">
         <meta name="email" content="peter@sattler22.net ">
         <title id="title">Pete's World Banking Empire: Home Page</title>
+        <link rel="shortcut icon" href="favicon.ico"/>
         <link rel="stylesheet" href="/stylesheets/header.css">
         <link rel="stylesheet" href="/stylesheets/navbar.css">
         <style>
@@ -40,12 +41,12 @@
         xhr.open("GET", "http://localhost:8080/api/money-transfer/customers");
         xhr.onreadystatechange = function() {
             if(xhr.readyState === 4) {
-                if(xhr.status === 200) {
+                if(xhr.status == 0 || xhr.status === 200) {
                     var data = JSON.parse(xhr.responseText);
                     displayCustomers(data);
                 }
                 else {
-                    alert("No customer data found!!!");
+                    document.getElementById("customers").innerHTML = "<h2>No customer data was returned</h2>";
                 }
             }
         };
@@ -56,7 +57,7 @@
             for(var row = 0; row < data.length; row++) {
                 if(row == 0) {
                     content += "<tr>";
-                    content += "<th>Customer ID</th>";
+                    content += "<th>SSN</th>";
                     content += "<th>First Name</th>";
                     content += "<th>Last Name</th>";
                     content += "<th>Gender</th>";

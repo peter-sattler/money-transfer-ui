@@ -28,30 +28,22 @@ npm start
 :moneybag: No heavy frameworks were used  
 :moneybag: Home page is available at http://localhost:3000
 
-## Goal 
+## Personal Goal 
 
 Write a fully interactive front-end to an existing REST service written in Java while still fulfilling the final project “Sultan-ian” requirements.
 
 ## Assumptions 
 
-* Did NOT strive for cross-browser compatibility (Safari only)
-* Customer images available for pre-loaded data, but not for newly added ones.
+:moneybag: Did NOT strive for cross-browser compatibility (Safari only)  
+:moneybag: Customer images available for pre-loaded data, but not for newly added ones  
     
 ## Lessons Learned
 
-* A surprising number of Looney Tune characters are MALE. Law suite pending. (LOL)
-* Always Google using “vanilla javascript” 
-* JSON generator:
-    * https://next.json-generator.com/
-    * Not as helpful as I thought since Customer and Account have foreign key (FK) references between the two entities. I 
-    had to manually massaged the data between the two.
-* AJAX CORS (Cross-Origin Resource Sharing) Issues: 
-    * The port number of the web server (80) and REST service (8080) are different, so Javascript didn’t consider them 
-    from the “same origin”.
-    * Added CORS filter to REST service
-* HTML 5 Input Types:
-    * Input types “tel”, “email” and “date” worked fine
-    * Built-in pattern matching worked fine
+:moneybag: A surprising number of Looney Tune characters are MALE. Law suite pending  
+:moneybag: Always Google using “vanilla javascript”  
+:moneybag: <ins>JSON generator (https://next.json-generator.com)</ins> - Not as helpful as I thought since Customer and Account have foreign key (FK) references between the two entities. I had to manually massaged the data between the two.   
+:moneybag: <ins>AJAX CORS (Cross-Origin Resource Sharing) Issues</ins> - The port number of the web server (80) and REST service (8080) are different, so Javascript didn’t consider them from the “same origin”. I added CORS filter to REST service.   
+:moneybag: HTML 5 Input Types - Both the new input types (*tel*, *email* and *date*) and built-in pattern matching worked well.  
 
 Pete Sattler  
 15 August 2019  

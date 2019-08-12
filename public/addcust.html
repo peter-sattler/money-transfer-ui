@@ -116,12 +116,17 @@
                 xhr.onreadystatechange = function() {
                     if(xhr.readyState === 4) {
                         console.info("Server status:", xhr.status);
-                        if(xhr.status == 0 || xhr.status === 201) {
-                            //Redirect back to home page:
-                            location.href = "http://localhost:3000";
-                        }
-                        else {
-                            alert("Unable to add new customer!!!");
+                        switch(xhr.status) {
+                            case 0:
+                            case 201:
+                                //Redirect back to home page:
+                                location.href = "http://localhost:3000";
+                                break;
+                            case 409:
+                                alert("Customer already exists");
+                                break;
+                            default:
+                                alert("Unable to add new customer");
                         }
                     }
                 };

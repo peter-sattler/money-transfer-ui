@@ -8,6 +8,7 @@
         <title id="title">Pete's World Banking Empire: Add New Customer</title>
         <link rel="shortcut icon" href="/favicon.ico"/>
         <link rel="stylesheet" href="/stylesheets/header.css">
+        <link rel="stylesheet" href="/stylesheets/navbar.css">
         <style>
             .show {                
                 color: red;
@@ -22,9 +23,13 @@
         <script src="/javascripts/include.js"></script>
     </head>
     <body>
-        <div w3-include-html="/header.html"></div>  
+        <div w3-include-html="/header.html"></div> 
+        <div class="navbar">
+            <ul>
+                <li><a href="/index.html">Home</a></li>
+            </ul>
+        </div>  
         <h2>New Customer Sign-up</h2>
-        <p>Use TAB key to move from one input field to the next</p>
         <form id="newCustForm" name="newCustForm" method="POST" action="http://localhost:8080/api/money-transfer/customer">
             <table>
                 <tr>

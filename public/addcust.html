@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="EN">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="author" content="Pete Sattler">
+        <meta name="description" content="NYU SPS INFO1-CE9755 Final Project">
+        <meta name="email" content="peter@sattler22.net ">
+        <title id="title">Pete's World Banking Empire: Add New Customer</title>
+        <link rel="shortcut icon" href="/favicon.ico"/>
+        <link rel="stylesheet" href="/stylesheets/header.css">
+        <style>
+            .show {                
+                color: red;
+                font-weight: bold; 
+                vertical-align: text-top;
+                visibility: visible;
+            }
+            .hide {
+                visibility: hidden;
+            }
+        </style>
+        <script src="/javascripts/include.js"></script>
+    </head>
+    <body>
+        <div w3-include-html="/header.html"></div>  
+        <h2>New Customer Sign-up</h2>
+        <p>Use TAB key to move from one input field to the next</p>
+        <form id="newCustForm" name="newCustForm" method="POST" action="http://localhost:8080/api/money-transfer/customer">
+            <table>
+                <tr>
+                    <td>Social Security #:</td>
+                    <td><input type="text" name="id" pattern="[0-9]{3}-[0-9]{2}-[0-9]{4}" placeholder="###-##-####"/></td>
+                    <td><span id="f1" class="hide">*</span></td>
+                </tr>
+                <tr>
+                    <td>First Name:</td>
+                    <td><input type="text" name="firstName"/></td>
+                    <td><span id="f2" class="hide">*</span></td>
+                </tr>
+                <tr>
+                    <td>Last Name:</td>
+                    <td><input type="text" name="lastName"/></td>
+                    <td><span id="f3" class="hide">*</span></td>
+                </tr>
+                <tr>
+                    <td>Gender:</td>
+                    <td>
+                        <input type="radio" name="gender" value="MALE"/>Male
+                        <input type="radio" name="gender" value="FEMALE"/>Female
+                    </td>
+                    <td><span id="f4" class="hide">*</span></td>
+                </tr>             
+                <tr>
+                    <td>Street:</td>
+                    <td><input type="text" name="street"></td>
+                    <td><span id="f5" class="hide">*</span></td>
+                </tr>
+                 <tr>
+                    <td>City:</td>
+                    <td><input type="text" name="city"></td>
+                    <td><span id="f6" class="hide">*</span></td>
+                </tr>
+                 <tr>
+                    <td>State:</td>
+                    <td><input type="text" name="state"></td>
+                    <td><span id="f7" class="hide">*</span></td>
+                </tr>
+                <tr>
+                    <td>Zip Code:</td>
+                    <td><input type="text" name="zip"></td>
+                    <td><span id="f8" class="hide">*</span></td>
+                </tr>
+                <tr>
+                    <td>Telephone:</td>
+                    <td><input type="tel" name="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="###-###-####"/></td>
+                    <td><span id="f9" class="hide">*</span></td>
+                </tr>
+                <tr>
+                    <td>E-mail:</td>
+                    <td><input type="email" name="email"/></td>
+                    <td><span id="f10" class="hide">*</span></td>
+                </tr>
+                <tr>
+                    <td>Date of Birth:</td>
+                    <td><input type="date" name="birthDate" pattern="\d{4}-\d{1,2}-\d{1,2}" placeholder="YYYY-MM-DD"/></td>
+                    <td><span id="f11" class="hide">*</span></td>
+                </tr>
+            </table>
+            <div id="errorInstructions" class="hide">Please correct the errors above</div>
+            <p>
+                <input type="submit" value="Submit"/>
+                <input type="reset"  value="Reset">
+            </p>
+        </form>
+        <div w3-include-html="/footer.html"></div>
+        <script>
+            includeHTML();
+            var newCustForm = document.getElementById("newCustForm");
+            newCustForm.addEventListener("submit", onSubmitHandler);
+            
+            /*********************************************/
+            /* Add a new customer by making an AJAX call */
+            /*********************************************/
+            function onSubmitHandler(e) {
+                e.preventDefault();
+                var newCustForm = document.getElementById("newCustForm");
+                if(!isDataValid(newCustForm))
+                    return;
+                var xhr = new XMLHttpRequest();
+                var json = toJSONString(newCustForm);
+                xhr.onreadystatechange = function() {
+                    if(xhr.readyState === 4) {
+                        console.info("Server status:", xhr.status);
+                        if(xhr.status == 0 || xhr.status === 201) {
+                            //Redirect back to home page:
+                            location.href = "http://localhost:3000";
+                        }
+                        else {
+                            alert("Unable to add new customer!!!");
+                        }
+                    }
+                };
+                xhr.open(newCustForm.method, newCustForm.action);
+                xhr.setRequestHeader("Content-Type", "application/json");
+                xhr.send(json);
+            }
+            
+            /*****************************/
+            /* Convert form data to JSON */
+            /*****************************/
+            function toJSONString(newCustForm) {
+                var formData = {};
+                var address = {};
+                var elements = newCustForm.querySelectorAll("input");
+                for(var i = 0; i < elements.length; i++) {
+                    var element = elements[i];
+                    if(element.type == "submit" || element.type == "reset")
+                        continue;
+                    if(element.type == "radio") {
+                        if(element.checked)
+                            formData[element.name] = element.value;
+                        continue;
+                    }
+                    //Collect these into a separate address object:
+                    if(element.name == "street" || element.name == "city" || element.name == "state" || element.name == "zip") {
+                        address[element.name] = element.value;
+                        continue;
+                    }
+                    if(element.name) {
+                        formData[element.name] = element.value;
+                    }
+                }
+                formData["address"] = address;
+                return JSON.stringify(formData);
+            }
+            
+            /**************************/
+            /* Validate the form data */
+            /**************************/
+            function isDataValid(newCustForm) {
+                var nbrErrors = 0;
+                //SSN:
+                document.getElementById("f1").className = "hide";
+                if(newCustForm.id.value == "") {
+                    document.getElementById("f1").className = "show";
+                    nbrErrors++;
+                }
+                //First name:
+                document.getElementById("f2").className = "hide";
+                if(newCustForm.firstName.value == "") {
+                    document.getElementById("f2").className = "show";
+                    nbrErrors++;
+                }
+                //Last name:
+                document.getElementById("f3").className = "hide";
+                if(newCustForm.lastName.value == "") {
+                    document.getElementById("f3").className = "show";
+                    nbrErrors++;
+                }
+                //Gender:
+                document.getElementById("f4").className = "hide";
+                if(!(newCustForm.gender[0].checked || newCustForm.gender[1].checked)) {
+                    document.getElementById("f4").className = "show";
+                    nbrErrors++;
+                }
+                //Street:
+                document.getElementById("f5").className = "hide";
+                if(newCustForm.street.value == "") {
+                    document.getElementById("f5").className = "show";
+                    nbrErrors++;
+                }
+                //City:
+                document.getElementById("f6").className = "hide";
+                if(newCustForm.city.value == "") {
+                    document.getElementById("f6").className = "show";
+                    nbrErrors++;
+                }
+                //State:
+                document.getElementById("f7").className = "hide";
+                if(newCustForm.state.value == "") {
+                    document.getElementById("f7").className = "show";
+                    nbrErrors++;
+                }              
+                //Zip code:
+                document.getElementById("f8").className = "hide";
+                if(newCustForm.zip.value == "") {
+                    document.getElementById("f8").className = "show";
+                    nbrErrors++;
+                }
+                //Telephone:
+                document.getElementById("f9").className = "hide";
+                if(newCustForm.phone.value == "") {
+                    document.getElementById("f9").className = "show";
+                    nbrErrors++;
+                }
+                //E-mail:
+                document.getElementById("f10").className = "hide";
+                if(newCustForm.email.value == "") {
+                    document.getElementById("f10").className = "show";
+                    nbrErrors++;
+                }
+                //Date of birth:
+                document.getElementById("f11").className = "hide";
+                if(newCustForm.birthDate.value == "") {
+                    document.getElementById("f11").className = "show";
+                    nbrErrors++;
+                }
+                //User instructions:
+                document.getElementById("errorInstructions").className = "hide";
+                if(nbrErrors > 0) {
+                    document.getElementById("errorInstructions").className = "show";
+                    return false;
+                }
+                return true;
+            }
+        </script>
+    </body>
+</html>

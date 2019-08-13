@@ -29,8 +29,16 @@
         <h2>Customer Details</h2>
         <div class="navbar">
             <ul>
-                <li><a name="substituteValue" href="/addaccount.html?customerId=__CUSTOMER_ID__">Add Account</a></li>
-                <li><a name="substituteValue" href="/transfer.html?customerId=__CUSTOMER_ID__">Transfer Funds</a></li>
+                <li><a name="replaceCustomerId"
+                       href="javascript:void(0)"
+                       onclick="open('/addaccount.html?customerId=__CUSTOMER_ID__',
+                                     'addAccountPopup',
+                                     'width=600, height=600, left=0, top=0')">Add Account</a></li>
+                <li><a name="replaceCustomerId"
+                       href="javascript:void(0)"
+                       onclick="open('/transfer.html?customerId=__CUSTOMER_ID__',
+                                     'transferPopup',
+                                     'width=600, height=600, left=0, top=0')">Transfer Funds</a></li>
             </ul>
         </div>
         <table>
@@ -86,14 +94,18 @@
             fetchCustomerDetails(customerId);
             fetchAccountDetails(customerId);
  
-            /*****************************************/
-            /* Add customer ID value to query string */
-            /*****************************************/
+            /***************************************************/
+            /* Substitute real customer ID for its placeholder */
+            /***************************************************/
             function addCustomerIdToLinks(customerId) {
-                var elements = document.getElementsByName("substituteValue");
+                var elements = document.getElementsByName("replaceCustomerId");
                 for(var i = 0; i < elements.length; i++) {
                     var element = elements[i];
-                    element.href = element.href.replace("__CUSTOMER_ID__", customerId);
+                    var attributes = element.attributes;
+                    for(var i = 0; i < attributes.length; i++) {
+                        var attribute = attributes[i];
+                        attribute.nodeValue = attribute.nodeValue.replace("__CUSTOMER_ID__", customerId)
+                    }
                 }
             }
             

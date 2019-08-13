@@ -72,8 +72,9 @@
                         switch(xhr.status) {
                             case 0:
                             case 201:
-                                //Redirect back to customer details page:
-                                location.href = "/custdetail.html?id=" + customerId;
+                                //Refresh the customer details page:
+                                window.opener.location.reload();
+                                window.close();
                                 break;
                             case 404:
                                 alert("Customer ID [" + customerId + "} was not found");

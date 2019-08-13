@@ -21,7 +21,7 @@ npm start
 
 A separate REST API is also required.  Please follow that [project's](https://github.com/peter-sattler/money-transfer-api/blob/master/README.md) instructions for proper set-up
 
-Once everthing is running, the application's home page will be available at http://localhost:3000 
+Once both back-end services are running, the application's home page will be available at http://localhost:3000 
 
 ## Implementation Details
 

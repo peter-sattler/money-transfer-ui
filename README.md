@@ -35,19 +35,19 @@ Once everthing is running, the application's home page will be available at http
 
 Write a fully interactive front-end to an existing Java REST service while still fulfilling the final project's _Sultan-ian_ requirements.
 
-## Assumptions 
+## Assumptions / Limitations 
 
 :moneybag: I did NOT strive for cross-browser compatibility (Safari only)    
-:moneybag: Customer images are available for pre-loaded data only     
+:moneybag: Customer images are available for pre-loaded data only  
+:moneybag: Bidirectional mapping of customer and account entities in the API layer forced the front-end to make separate AJAX calls for customer data and accounts data on the customer detail page   
+:moneybag: REST service should assign account number. It should not be the responsibility of the front-end  
     
 ## Lessons Learned
 
 :moneybag: A surprising number of Looney Tune characters are MALE (law suite pending).    
-:moneybag: Always begin a Google search using “vanilla javascript”    
+:moneybag: For the final project, always begin a Google search using the phrasw “vanilla javascript”    
 :moneybag: <ins>AJAX CORS (Cross-Origin Resource Sharing) Issues</ins> - The port number of the web server (80) and REST service (8080) are different, so Javascript didn’t consider them from the “same origin”. I had to add a CORS filter to the REST service in order to relax these restrictions.  
 :moneybag: <ins>HTML 5 Input Types</ins> - Both the new input types (*tel*, *email* and *date*) and built-in pattern matching worked well, but did not integrate well with my overall error handling mechanism.  
-:moneybag: Bidirectional mapping of customer and account entities in the API layer forced the front-end to make separate AJAX calls for customer data and accounts data on the customer detail page.   
-:moneybag: REST service should assign account number. It should not be the responsibility of the front-end.  
 
 Pete Sattler  
 13 August 2019  

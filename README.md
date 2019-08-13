@@ -9,7 +9,7 @@ This user interface is the final project for a class I attended at New York Univ
 
 Design and develop a web project on any subject you wish, providing that the content of the project includes dynamic DHTML effects/behavior, event handling, at least one form with form validation, and cookies or web storage. 
 
-All back-end related services are provided by my REST API project (https://github.com/peter-sattler/money-transfer-api) which also also available here on Github.
+All back-end related services are provided by my REST API project (https://github.com/peter-sattler/money-transfer-api) which is also available here on Github.
 
 ## Getting Started
 

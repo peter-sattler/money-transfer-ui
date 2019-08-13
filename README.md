@@ -43,7 +43,7 @@ Write a fully interactive front-end to an existing Java REST service while still
 
 :moneybag: A surprising number of Looney Tune characters are MALE. Law suite pending.    
 :moneybag: Always begin a Google search using “vanilla javascript”    
-:moneybag: <ins>AJAX CORS (Cross-Origin Resource Sharing) Issues</ins> - The port number of the web server (80) and REST service (8080) are different, so Javascript didn’t consider them from the “same origin”. I had to a CORS filter to the REST service in order to relax these restrictions. 
+:moneybag: <ins>AJAX CORS (Cross-Origin Resource Sharing) Issues</ins> - The port number of the web server (80) and REST service (8080) are different, so Javascript didn’t consider them from the “same origin”. I had to a CORS filter to the REST service in order to relax these restrictions.  
 :moneybag: HTML 5 Input Types - Both the new input types (*tel*, *email* and *date*) and built-in pattern matching worked well, but did not integrate well eith the overall error handling mechanism.  
 :moneybag: Bidirectional mapping of customer and account entities in the API layer forced the front-end to make separate AJAX calls for customer data and accounts data on the customer detail.   
 

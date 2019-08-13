@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="EN">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="author" content="Pete Sattler">
+        <meta name="description" content="NYU SPS INFO1-CE9755 Final Project">
+        <meta name="email" content="peter@sattler22.net ">
+        <title id="title">Pete's World Banking Empire: Customer Details</title>
+        <link rel="shortcut icon" href="/favicon.ico"/>
+        <link rel="stylesheet" href="/stylesheets/header.css">
+        <link rel="stylesheet" href="/stylesheets/navbar.css">
+        <style>
+        </style>
+        <script src="/javascripts/include.js"></script>
+    </head>
+    <body>
+        <div w3-include-html="/header.html"></div>
+        <h2>Customer Details</h2>
+        <div class="navbar">
+            <ul>
+                <li><a href="/addaccount.html">Add Account</a></li>
+                <li><a href="/transfer.html">Transfer Funds</a></li>
+            </ul>
+        </div>
+        <table>
+            <tr>
+                <td>First Name:</td>
+                <td id="firstName"></td>
+            </tr>
+            <tr>
+                <td>Last Name:</td>
+                <td id="lastName"></td>
+            </tr>
+            <tr>
+                <td>Gender:</td>
+                <td id="gender"></td>
+            </tr>
+            <tr>
+                <td>Address:</td>
+                <td id="address1"></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td id="address2"></td>
+            </tr>             
+            <tr>
+                <td>Telephone:</td>
+                <td id="phone"></td>
+            </tr>
+            <tr>
+                <td>E-mail:</td>
+                <td id="email"></td>
+            </tr>
+            <tr>
+                <td>Social Security #:</td>
+                <td id="id"></td>
+            </tr>            
+            <tr>
+                <td>Date of Birth:</td>
+                <td id="birthDate"></td>
+            </tr>
+            <tr>
+                <td>Customer Since:</td>
+                <td id="joinedDate"></td>
+            </tr>
+        </table>
+        <div w3-include-html="/footer.html"></div>
+        <script>
+            includeHTML();                                               
+            var xhr = new XMLHttpRequest();
+            var queryString = location.search.substring(1); 
+            var id = queryString.substring(queryString.indexOf('=') + 1);
+            xhr.open("GET", "http://localhost:8080/api/money-transfer/customer/" + id);
+            xhr.onreadystatechange = function() {
+                if(xhr.readyState === 4) {
+                    console.info("Server status:", xhr.status);
+                    switch(xhr.status) {
+                        case 0:
+                        case 200:
+                            var data = JSON.parse(xhr.responseText);
+                            populateCustomerDetail(data);
+                            break;
+                        case 404:
+                            alert("Customer ID [" + id + "} was not found");
+                            break;
+                        default:
+                            alert("Unable to retrieve customer details");
+                    }
+                }
+            };
+            xhr.send(); 
+            
+            /********************************************/
+            /* Populate the table with customer details */
+            /********************************************/
+            function populateCustomerDetail(dataRow) {                                
+                document.getElementById("firstName").innerHTML = dataRow.firstName;
+                document.getElementById("lastName").innerHTML = dataRow.lastName;
+                document.getElementById("gender").innerHTML = dataRow.gender;                
+                document.getElementById("address1").innerHTML = dataRow.address.street;              
+                var address2 = dataRow.address.city + ", " + dataRow.address.state + " " + dataRow.address.zip;
+                document.getElementById("address2").innerHTML = address2;              
+                document.getElementById("phone").innerHTML = dataRow.phone;
+                document.getElementById("email").innerHTML = dataRow.email;
+                document.getElementById("birthDate").innerHTML = formatDate(dataRow.birthDate);                
+                document.getElementById("id").innerHTML = dataRow.id;
+                document.getElementById("joinedDate").innerHTML = formatDate(dataRow.joinedDate);
+            }
+            
+            /*************************/
+            /* Simple date formatter */
+            /*************************/
+            function formatDate(dateArray) {
+                return dateArray[1] + "/" + dateArray[2] + "/" + dateArray[0];
+            }
+        </script>
+    </body>
+</html>

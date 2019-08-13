@@ -27,6 +27,7 @@
     </head>
     <body>
         <div w3-include-html="/header.html"></div>
+        <h2>Customer List</h2>
         <div class="navbar">
             <ul>
                 <li><a href="/addcust.html">Add Customer</a></li>
@@ -53,6 +54,9 @@
         };
         xhr.send();
         
+        /***********************************/
+        /* Creates the customer data table */
+        /***********************************/
         function displayCustomers(data) {
             var content = "<table>";
             for(var row = 0; row < data.length; row++) {
@@ -67,7 +71,7 @@
                     content += "</tr>";
                 }
                 content += "<tr>";
-                content += "<td>" + data[row].id + "</td>";
+                content += '<td><a href="/custdetail.html?id=' + data[row].id + '">' + data[row].id + "</a></td>";
                 content += "<td>" + data[row].firstName + "</td>";
                 content += "<td>" + data[row].lastName + "</td>";
                 content += "<td>" + data[row].gender + "</td>";

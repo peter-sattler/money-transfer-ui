@@ -23,13 +23,13 @@
         <script src="/javascripts/include.js"></script>
     </head>
     <body>
-        <div w3-include-html="/header.html"></div> 
+        <div w3-include-html="/header.html"></div>
+        <h2>New Customer Sign-up</h2>
         <div class="navbar">
             <ul>
                 <li><a href="/index.html">Home</a></li>
             </ul>
         </div>  
-        <h2>New Customer Sign-up</h2>
         <form id="newCustForm" name="newCustForm" method="POST" action="http://localhost:8080/api/money-transfer/customer">
             <table>
                 <tr>
@@ -120,7 +120,7 @@
                             case 0:
                             case 201:
                                 //Redirect back to home page:
-                                location.href = "http://localhost:3000";
+                                location.href = "/index.html";
                                 break;
                             case 409:
                                 alert("Customer already exists");

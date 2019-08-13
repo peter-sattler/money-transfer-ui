@@ -5,7 +5,7 @@
 
 This web user interface (UI) was created for and submitted as the final project in a JAVASCRIPT - FULL STACK WEB 
 DEVELOPMENT (INFO1-CE9755) course which I attended at New York University's School of Professional Studies (NYU SPS) 
-during the Summer of 2019. As such, it concentrates on the basics; avoiding heavy Javascript frameworks like JQuery. Special thanks to Professor Sam Sultan (http://samsultan.com) for his humor, patience and knowledge of Javascript. You are an excellent instructor. It was a pleasure to learn from you.
+during the Summer of 2019. As such, it concentrates on the basics; avoiding heavy Javascript frameworks like JQuery. Special thanks to Professor Sam Sultan (http://samsultan.com) for his humor, patience and knowledge of Javascript. You are an excellent instructor. It was a pleasure to be part of your class.
 
 # Project Requirements
 
@@ -26,27 +26,26 @@ A separate REST API is also required.  Please follow that [project's](https://gi
 ## Implementation Details
 
 :moneybag: Implemented using HTML, CSS and Javascript (including AJAX)  
-:moneybag: Static content is served via an embedded Express web server (https://expressjs.com)   
-:moneybag: No heavy frameworks were used  
+:moneybag: Static content is served via an embedded Express web server (https://expressjs.com) 
+:moneybag: the [JSON generator](https://next.json-generator.com) was used to create the initial test data.  
 :moneybag: Home page is available at http://localhost:3000
 
 ## Personal Goal 
 
-Write a fully interactive front-end to an existing REST service written in Java while still fulfilling the final project _Sultan-ian_ requirements.
+Write a fully interactive front-end to an existing Java REST service while still fulfilling the final project _Sultan-ian_ requirements.
 
 ## Assumptions 
 
-:moneybag: Did NOT strive for cross-browser compatibility (Safari only)  
-:moneybag: Customer images available for pre-loaded data, but not for newly added ones  
+:moneybag: I did NOT strive for cross-browser compatibility (Safari only).   
+:moneybag: Customer images are available for pre-loaded data only.   
     
 ## Lessons Learned
 
 :moneybag: A surprising number of Looney Tune characters are MALE. Law suite pending  
-:moneybag: Always Google using “vanilla javascript”  
-:moneybag: <ins>JSON generator (https://next.json-generator.com)</ins> - Not as helpful as I thought since Customer and Account have foreign key (FK) references between the two entities. I had to manually massaged the data between the two.   
-:moneybag: <ins>AJAX CORS (Cross-Origin Resource Sharing) Issues</ins> - The port number of the web server (80) and REST service (8080) are different, so Javascript didn’t consider them from the “same origin”. I added a CORS filter to REST service to relax these restrictions. 
-:moneybag: HTML 5 Input Types - Both the new input types (*tel*, *email* and *date*) and built-in pattern matching worked well, but did not tie in well to the overall error handling mechanism.  
-:moneybag: Bidirectional mapping of customer and account in the API layer forced the front-end to make 2 AJAX calls for the customer details screen; one for customer data and one for the customer's accounts. This is less than ideal.  
+:moneybag: Always begin a Google search using “vanilla javascript”    
+:moneybag: <ins>AJAX CORS (Cross-Origin Resource Sharing) Issues</ins> - The port number of the web server (80) and REST service (8080) are different, so Javascript didn’t consider them from the “same origin”. I had to a CORS filter to the REST service in order to relax these restrictions. 
+:moneybag: HTML 5 Input Types - Both the new input types (*tel*, *email* and *date*) and built-in pattern matching worked well, but did not integrate well eith the overall error handling mechanism.  
+:moneybag: Bidirectional mapping of customer and account entities in the API layer forced the front-end to make separate AJAX calls for customer data and accounts data on the customer detail.   
 
 Pete Sattler  
 15 August 2019  

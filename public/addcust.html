@@ -75,7 +75,7 @@
                     <td><span id="f11" class="hide">*</span></td>
                 </tr>
             </table>
-            <div id="errorInstructions" class="hide">Please correct the errors above</div>
+            <div id="instructions" class="hide">Please correct the errors above</div>
             <p>
                 <input type="submit" value="Submit"/>
                 <input type="reset"  value="Reset">
@@ -220,9 +220,9 @@
                     nbrErrors++;
                 }
                 //User instructions:
-                document.getElementById("errorInstructions").className = "hide";
+                document.getElementById("instructions").className = "hide";
                 if(nbrErrors > 0) {
-                    document.getElementById("errorInstructions").className = "show";
+                    document.getElementById("instructions").className = "show";
                     return false;
                 }
                 return true;

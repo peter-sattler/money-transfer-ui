@@ -12,6 +12,7 @@
         <style>
         </style>
         <script src="/javascripts/include.js"></script>
+        <script src="/javascripts/formatting.js"></script>
     </head>
     <body>
         <div w3-include-html="/header.html"></div>
@@ -64,35 +65,46 @@
                 <td id="joinedDate"></td>
             </tr>
         </table>
+        <h4>Account Data</h4>
+        <div id="accounts"></div>
         <div w3-include-html="/footer.html"></div>
         <script>
-            includeHTML();                                               
-            var xhr = new XMLHttpRequest();
-            var queryString = location.search.substring(1); 
-            var id = queryString.substring(queryString.indexOf('=') + 1);
-            xhr.open("GET", "http://localhost:8080/api/money-transfer/customer/" + id);
-            xhr.onreadystatechange = function() {
-                if(xhr.readyState === 4) {
-                    console.info("Server status:", xhr.status);
-                    switch(xhr.status) {
-                        case 0:
-                        case 200:
-                            var data = JSON.parse(xhr.responseText);
-                            populateCustomerDetail(data);
-                            break;
-                        case 404:
-                            alert("Customer ID [" + id + "} was not found");
-                            break;
-                        default:
-                            alert("Unable to retrieve customer details");
-                    }
-                }
-            };
-            xhr.send(); 
+            includeHTML();
+            var queryString = location.search; 
+            var customerId = queryString.substring(queryString.indexOf('=') + 1);
+            console.info("Customer ID: [" + customerId + "]")
+            fetchCustomerDetails(customerId);
+            fetchAccountDetails(customerId);
             
-            /********************************************/
-            /* Populate the table with customer details */
-            /********************************************/
+            /**************************/
+            /* Fetch customer details */
+            /**************************/
+            function fetchCustomerDetails(customerId) {
+                var xhr = new XMLHttpRequest();
+                xhr.open("GET", "http://localhost:8080/api/money-transfer/customer/" + customerId);
+                xhr.onreadystatechange = function() {
+                    if(xhr.readyState === 4) {
+                        console.info("Server status:", xhr.status);
+                        switch(xhr.status) {
+                            case 0:
+                            case 200:
+                                var data = JSON.parse(xhr.responseText);
+                                populateCustomerDetail(data);
+                                break;
+                            case 404:
+                                alert("Customer ID [" + customerId + "} was not found");
+                                break;
+                            default:
+                                alert("Unable to retrieve customer details");
+                        }
+                    }
+                };
+                xhr.send();
+            }
+            
+            /*********************************/
+            /* Populate the customer details */
+            /*********************************/
             function populateCustomerDetail(dataRow) {                                
                 document.getElementById("firstName").innerHTML = dataRow.firstName;
                 document.getElementById("lastName").innerHTML = dataRow.lastName;
@@ -106,12 +118,54 @@
                 document.getElementById("id").innerHTML = dataRow.id;
                 document.getElementById("joinedDate").innerHTML = formatDate(dataRow.joinedDate);
             }
+ 
+            /*************************/
+            /* Fetch account details */
+            /*************************/
+            function fetchAccountDetails(customerId) {
+                var xhr = new XMLHttpRequest();
+                xhr.open("GET", "http://localhost:8080/api/money-transfer/accounts/" + customerId);
+                xhr.onreadystatechange = function() {
+                    if(xhr.readyState === 4) {
+                        console.info("Server status:", xhr.status);
+                        switch(xhr.status) {
+                            case 0:
+                            case 200:
+                                var data = JSON.parse(xhr.responseText);
+                                populateAccountDetail(data);
+                                break;
+                            case 404:
+                                alert("Customer ID [" + id + "} was not found");
+                                break;
+                            default:
+                                alert("Unable to retrieve customer details");
+                        }
+                    }
+                };
+                xhr.send();
+            }
             
-            /*************************/
-            /* Simple date formatter */
-            /*************************/
-            function formatDate(dateArray) {
-                return dateArray[1] + "/" + dateArray[2] + "/" + dateArray[0];
+            /***********************************/
+            /* Creates the customer data table */
+            /***********************************/
+            function populateAccountDetail(data) {
+                var content = "<table>";
+                for(var row = 0; row < data.length; row++) {
+                    if(row == 0) {
+                        content += "<tr>";
+                        content += "<th>Account #</th>";
+                        content += "<th>Type</th>";
+                        content += "<th>Balance</th>";
+                        content += "</tr>";
+                    }
+                    content += "<tr>";
+                    content += "<td>" + data[row].number + "</td>";
+                    content += "<td>" + data[row].type + "</td>";
+                    content += "<td>" + formatMoney(data[row].balance) + "</td>";
+                    content += "</tr>";
+                }
+                content += "</table>";
+                document.getElementById("accounts").innerHTML = content;
             }
         </script>
     </body>

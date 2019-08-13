@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="EN">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="author" content="Pete Sattler">
+        <meta name="description" content="NYU SPS INFO1-CE9755 Final Project">
+        <meta name="email" content="peter@sattler22.net ">
+        <title id="title">Pete's World Banking Empire: Add New Account</title>
+        <link rel="shortcut icon" href="/favicon.ico"/>
+        <link rel="stylesheet" href="/stylesheets/header.css">
+        <link rel="stylesheet" href="/stylesheets/form-validation.css">
+        <script src="/javascripts/include.js"></script>
+    </head>
+    <body>
+        <div w3-include-html="/header.html"></div>
+        <h2>Add New Account</h2>
+        <form id="newAcctForm" name="newAcctForm" method="POST" action="http://localhost:8080/api/money-transfer/account">
+            <table>
+                <tr>
+                    <td>Social Security #:</td>
+                    <td id="customerId"></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Account #:</td>
+                    <td><input type="text" name="number"/></td>
+                    <td><span id="f1" class="hide">*</span></td>
+                </tr>
+                <tr>
+                    <td>Type:</td>
+                    <td>
+                        <input type="radio" name="type" value="CHECKING"/>Checking
+                        <input type="radio" name="type" value="SAVINGS"/>Savings
+                    </td>
+                    <td><span id="f2" class="hide">*</span></td>
+                </tr>             
+                <tr>
+                    <td>Opening Balance:</td>
+                    <td><input type="text" name="balance"/></td>
+                    <td><span id="f3" class="hide">*</span></td>
+                </tr>
+            </table>
+            <div id="instructions" class="hide">Please correct the errors above</div>
+            <p>
+                <input type="submit" value="Submit"/>
+                <input type="reset"  value="Reset">
+            </p>
+        </form>
+        <div w3-include-html="/footer.html"></div>
+        <script>
+            includeHTML();
+            var queryString = location.search; 
+            var customerId = queryString.substring(queryString.indexOf('=') + 1);
+            console.info("Customer ID: [" + customerId + "]");
+            document.getElementById("customerId").innerHTML = customerId;
+            var newAcctForm = document.getElementById("newAcctForm");
+            newAcctForm.addEventListener("submit", onSubmitHandler);
+            
+            /********************************************/
+            /* Add a new account by making an AJAX call */
+            /********************************************/
+            function onSubmitHandler(e) {
+                e.preventDefault();
+                var newAcctForm = document.getElementById("newAcctForm");
+                if(!isDataValid(newAcctForm))
+                    return;
+                var xhr = new XMLHttpRequest();
+                var json = toJSONString(newAcctForm);
+                xhr.onreadystatechange = function() {
+                    if(xhr.readyState === 4) {
+                        console.info("Server status:", xhr.status);
+                        switch(xhr.status) {
+                            case 0:
+                            case 201:
+                                //Redirect back to customer details page:
+                                location.href = "/custdetail.html?id=" + customerId;
+                                break;
+                            case 404:
+                                alert("Customer ID [" + customerId + "} was not found");
+                                break;                                
+                            case 409:
+                                alert("Account already exists");
+                                break;
+                            default:
+                                alert("Unable to add new account");
+                        }
+                    }
+                };
+                xhr.open(newAcctForm.method, newAcctForm.action);
+                xhr.setRequestHeader("Content-Type", "application/json");
+                xhr.send(json);
+            }
+            
+            /*****************************/
+            /* Convert form data to JSON */
+            /*****************************/
+            function toJSONString(newAcctForm) {
+                var formData = {};
+                var elements = newAcctForm.querySelectorAll("input");
+                formData["customerId"] = customerId;
+                for(var i = 0; i < elements.length; i++) {
+                    var element = elements[i];
+                    if(element.type == "submit" || element.type == "reset")
+                        continue;
+                    if(element.type == "radio") {
+                        if(element.checked)
+                            formData[element.name] = element.value;
+                        continue;
+                    }
+                    if(element.name) {
+                        formData[element.name] = element.value;
+                    }
+                }
+                return JSON.stringify(formData);
+            }
+            
+            /**************************/
+            /* Validate the form data */
+            /**************************/
+            function isDataValid(newAcctForm) {
+                var nbrErrors = 0;
+                //Account number:
+                document.getElementById("f1").className = "hide";
+                if(newAcctForm.number.value == "") {
+                    document.getElementById("f1").className = "show";
+                    nbrErrors++;
+                }
+                //Account type:
+                document.getElementById("f2").className = "hide";
+                if(!(newAcctForm.type[0].checked || newAcctForm.type[1].checked)) {
+                    document.getElementById("f2").className = "show";
+                    nbrErrors++;
+                }
+                //Opening balance:
+                document.getElementById("f3").className = "hide";
+                if(newAcctForm.balance.value == "") {
+                    document.getElementById("f3").className = "show";
+                    nbrErrors++;
+                }
+                //User instructions:
+                document.getElementById("instructions").className = "hide";
+                if(nbrErrors > 0) {
+                    document.getElementById("instructions").className = "show";
+                    return false;
+                }
+                return true;
+            }
+        </script>
+    </body>
+</html>

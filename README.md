@@ -3,9 +3,7 @@
 
 # Background
 
-This web user interface (UI) was created for and submitted as the final project in a JAVASCRIPT - FULL STACK WEB 
-DEVELOPMENT (INFO1-CE9755) course which I attended at New York University's School of Professional Studies (NYU SPS) 
-during the Summer of 2019. As such, it concentrates on the basics; avoiding heavy Javascript frameworks like JQuery. Special thanks to Professor Sam Sultan (http://samsultan.com) for his humor, patience and knowledge of Javascript. You are an excellent instructor. It was a pleasure to be part of your class.
+This web user interface (UI) was created for and submitted as the final project in a JAVASCRIPT - FULL STACK WEB DEVELOPMENT (INFO1-CE9755) course which I attended at New York University's School of Professional Studies (NYU SPS) during the Summer of 2019. As such, it concentrates on the basics; avoiding heavy Javascript frameworks like JQuery. Special thanks to Professor Sam Sultan (http://samsultan.com) for his humor, patience and knowledge of Javascript. You are an excellent instructor. It was a pleasure to be part of your class.
 
 # Project Requirements
 
@@ -27,9 +25,9 @@ Once everthing is running, the application's home page will be available at http
 
 ## Implementation Details
 
-:moneybag: Implemented using HTML, CSS and Javascript (including AJAX)   
-:moneybag: Static content is served via an embedded Express web server (https://expressjs.com)    
-:moneybag: The [JSON generator](https://next.json-generator.com) was used to create the initial test data   
+:moneybag: Implemented using HTML, CSS and Javascript (including AJAX)  
+:moneybag: Static content is served via an embedded Express web server (https://expressjs.com)  
+:moneybag: The [JSON generator](https://next.json-generator.com) was used to create the initial test data  
 
 ## Personal Goal 
 
@@ -37,16 +35,16 @@ Write a fully interactive front-end to an existing Java REST service while still
 
 ## Assumptions / Limitations 
 
-:moneybag: I did NOT strive for cross-browser compatibility (tested on Safari only)    
-:moneybag: Customer images are available for pre-loaded data only  
-:moneybag: Bidirectional mapping of customer and account entities in the API layer forced the front-end to make separate AJAX calls for customer data and accounts data on the customer detail page   
-:moneybag: REST service should assign account number. It should not be the responsibility of the front-end  
+:moneybag: I did NOT strive for cross-browser compatibility (tested on Safari only).  
+:moneybag: Customer images are available for pre-loaded data only.  
+:moneybag: Bidirectional mapping of customer and account entities in the API layer forced the front-end to make separate AJAX calls for customer data and accounts data on the customer detail page.   
+:moneybag: REST service should assign account number. It should not be the responsibility of the front-end.  
     
 ## Lessons Learned
 
 :moneybag: A surprising number of Looney Tune characters are MALE (law suite pending).    
-:moneybag: For the final project, always begin a Google search using the phrasw “vanilla javascript”    
-:moneybag: <ins>AJAX CORS (Cross-Origin Resource Sharing) Issues</ins> - The port number of the web server (80) and REST service (8080) are different, so Javascript didn’t consider them from the “same origin”. I had to add a CORS filter to the REST service in order to relax these restrictions.  
+:moneybag: For the final project, always begin a Google search using the phrasw _vanilla javascript_    
+:moneybag: <ins>AJAX CORS (Cross-Origin Resource Sharing) Issues</ins> - The port number of the web server (80) and REST service (8080) are different, so Javascript didn’t consider them from the _same origin_. I had to add a CORS filter to the REST service in order to relax these restrictions.  
 :moneybag: <ins>HTML 5 Input Types</ins> - Both the new input types (*tel*, *email* and *date*) and built-in pattern matching worked as advertised, but did not integrate well with my overall error handling mechanism.  
 
 Pete Sattler  

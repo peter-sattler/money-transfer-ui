@@ -103,8 +103,9 @@
                         switch(xhr.status) {
                             case 0:
                             case 201:
-                                //Redirect back to home page:
-                                location.href = "/index.html";
+                                //Refresh the home page:
+                                window.opener.location.reload();
+                                window.close();
                                 break;
                             case 409:
                                 alert("Customer already exists");

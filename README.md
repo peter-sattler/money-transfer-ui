@@ -38,7 +38,7 @@ Write a fully interactive front-end to an existing Java REST service while still
 :moneybag: I did NOT strive for cross-browser compatibility (tested on Safari only).  
 :moneybag: Customer images are available for pre-loaded data only.  
 :moneybag: Bidirectional mapping of customer and account entities in the API layer forced the front-end to make separate AJAX calls for customer data and accounts data on the customer detail page.   
-:moneybag: REST service should assign account number. It should not be the responsibility of the front-end. 
+:moneybag: REST service should assign account number. It should not be the responsibility of the front-end.  
 :moneybag: REST service should not allow an account to be deleted unless it has a zero balance. Enforced this on the front-end.  
     
 ## Lessons Learned

@@ -3,7 +3,9 @@
 
 # Background
 
-This web user interface (UI) was created for and submitted as the final project in a JAVASCRIPT - FULL STACK WEB DEVELOPMENT (INFO1-CE9755) course which I attended at New York University's School of Professional Studies (NYU SPS) during the Summer of 2019. As such, it concentrates on the basics; avoiding heavy Javascript frameworks like JQuery. Special thanks to Professor Sam Sultan (http://samsultan.com) for his humor, patience and knowledge of Javascript. You are an excellent instructor. It was a pleasure to be part of your class.
+This web user interface (UI) was created for and submitted as the final project in a JAVASCRIPT - FULL STACK WEB DEVELOPMENT (INFO1-CE9755) course which I attended at New York University's School of Professional Studies (NYU SPS) during the Summer of 2019. As such, it concentrates on the basics; avoiding heavy Javascript frameworks like JQuery.
+
+Special thanks to Professor Sam Sultan (http://samsultan.com) for his humor, patience and knowledge of Javascript. You are an excellent instructor. It was a pleasure to be part of your class.
 
 # Project Requirements
 

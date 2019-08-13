@@ -1,0 +1,9 @@
+.show {
+    color: red;
+    font-weight: bold;
+    vertical-align: text-top;
+    visibility: visible;
+}
+.hide {
+    visibility: hidden;
+}

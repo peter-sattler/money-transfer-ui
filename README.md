@@ -33,7 +33,7 @@ Once everthing is running, the application's home page will be available at http
 
 ## Personal Goal 
 
-Write a fully interactive front-end to an existing Java REST service while still fulfilling the final project _Sultan-ian_ requirements.
+Write a fully interactive front-end to an existing Java REST service while still fulfilling the final project's _Sultan-ian_ requirements.
 
 ## Assumptions 
 

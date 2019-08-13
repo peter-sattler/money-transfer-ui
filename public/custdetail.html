@@ -10,6 +10,16 @@
         <link rel="stylesheet" href="/stylesheets/header.css">
         <link rel="stylesheet" href="/stylesheets/navbar.css">
         <style>
+            th, td {
+                padding: 5px;
+            }
+            #delete {
+                text-align: center;
+            }
+            #delete img {
+                height: 25%;
+                width: 25%;
+            }
         </style>
         <script src="/javascripts/include.js"></script>
         <script src="/javascripts/formatting.js"></script>
@@ -65,7 +75,6 @@
                 <td id="joinedDate"></td>
             </tr>
         </table>
-        <h4>Account Data</h4>
         <div id="accounts"></div>
         <div w3-include-html="/footer.html"></div>
         <script>
@@ -156,12 +165,14 @@
                         content += "<th>Account #</th>";
                         content += "<th>Type</th>";
                         content += "<th>Balance</th>";
+                        content += "<th>Delete</th>";
                         content += "</tr>";
                     }
                     content += "<tr>";
                     content += "<td>" + data[row].number + "</td>";
                     content += "<td>" + data[row].type + "</td>";
                     content += "<td>" + formatMoney(data[row].balance) + "</td>";
+                    content += '<td id="delete"><img src="/images/delete.png" alt="Delete"></td>';
                     content += "</tr>";
                 }
                 content += "</table>";

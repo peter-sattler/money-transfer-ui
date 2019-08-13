@@ -21,7 +21,7 @@ cd money-transfer-ui
 npm start
 ```
 
-A separate REST API is also required.  Please follow that [project's](https://github.com/peter-sattler/money-transfer-api) instructions for proper set-up
+A separate REST API is also required.  Please follow that [project's](https://github.com/peter-sattler/money-transfer-api/blob/master/README.md) instructions for proper set-up
 
 ## Implementation Details
 

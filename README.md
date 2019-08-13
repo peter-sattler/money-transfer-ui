@@ -27,7 +27,7 @@ A separate REST API is also required.  Please follow that [project's](https://gi
 
 :moneybag: Implemented using HTML, CSS and Javascript (including AJAX)   
 :moneybag: Static content is served via an embedded Express web server (https://expressjs.com)    
-:moneybag: the [JSON generator](https://next.json-generator.com) was used to create the initial test data  
+:moneybag: The [JSON generator](https://next.json-generator.com) was used to create the initial test data  
 :moneybag: Home page is available at http://localhost:3000  
 
 ## Personal Goal 

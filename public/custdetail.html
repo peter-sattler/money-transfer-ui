@@ -102,8 +102,8 @@
                 for(var i = 0; i < elements.length; i++) {
                     var element = elements[i];
                     var attributes = element.attributes;
-                    for(var i = 0; i < attributes.length; i++) {
-                        var attribute = attributes[i];
+                    for(var j = 0; j < attributes.length; j++) {
+                        var attribute = attributes[j];
                         attribute.nodeValue = attribute.nodeValue.replace("__CUSTOMER_ID__", customerId)
                     }
                 }

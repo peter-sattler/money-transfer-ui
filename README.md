@@ -23,12 +23,13 @@ npm start
 
 A separate REST API is also required.  Please follow that [project's](https://github.com/peter-sattler/money-transfer-api/blob/master/README.md) instructions for proper set-up
 
+Once everthing is running, the application's home page will be available at http://localhost:3000 
+
 ## Implementation Details
 
 :moneybag: Implemented using HTML, CSS and Javascript (including AJAX)   
 :moneybag: Static content is served via an embedded Express web server (https://expressjs.com)    
-:moneybag: The [JSON generator](https://next.json-generator.com) was used to create the initial test data  
-:moneybag: Home page is available at http://localhost:3000  
+:moneybag: The [JSON generator](https://next.json-generator.com) was used to create the initial test data   
 
 ## Personal Goal 
 

@@ -33,7 +33,7 @@ Write a fully interactive front-end to an existing Java REST service while still
 
 This application is intended to be used by internal employees of *The Empire* only. Both our branch representatives and our call center are required to use it or suffer the consequences. It includes internal reminders to apply pressure to the customer where required. After all, we are an evil empire.
 
-Like any evil empire, our journey to world domination starts in _Toon Town_!!!
+Like any evil empire, our journey to world domination starts in _Toon Town_.
 
 ## Implementation Details
 

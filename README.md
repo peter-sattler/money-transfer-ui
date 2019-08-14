@@ -33,6 +33,10 @@ Once both back-end services are running, the application's home page will be ava
 
 Write a fully interactive front-end to an existing Java REST service while still fulfilling the final project's _Sultan-ian_ requirements.
 
+## Application Perspective
+
+This application is intended to be used by internal employees of *The Empire* only. Both our branch representatives and our call center are required to use it or suffer the consequences. It includes internal reminders to apply pressure to the customer where required. After all, we are an evil empire. 
+
 ## Assumptions / Limitations 
 
 :moneybag: I did NOT strive for cross-browser compatibility (tested on Safari only).  

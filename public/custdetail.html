@@ -13,6 +13,17 @@
             th, td {
                 padding: 5px;
             }
+            #customerTable {
+                float: left;
+            }
+            #customerImage {
+                float: left;
+            }
+            #customerImage img {
+                margin-left: 5%;
+                height: 300px;
+                width: 300px;
+            }
             .delete {
                 text-align: center;
             }
@@ -25,6 +36,7 @@
             }
         </style>
         <script src="/javascripts/include.js"></script>
+        <script src="/javascripts/random.js"></script>
         <script src="/javascripts/formatting.js"></script>
     </head>
     <body>
@@ -44,50 +56,53 @@
                                      'width=600, height=600, left=0, top=0')">Transfer Funds</a></li>
             </ul>
         </div>
-        <table>
-            <tr>
-                <td>First Name:</td>
-                <td id="firstName"></td>
-            </tr>
-            <tr>
-                <td>Last Name:</td>
-                <td id="lastName"></td>
-            </tr>
-            <tr>
-                <td>Gender:</td>
-                <td id="gender"></td>
-            </tr>
-            <tr>
-                <td>Address:</td>
-                <td id="address1"></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td id="address2"></td>
-            </tr>             
-            <tr>
-                <td>Telephone:</td>
-                <td id="phone"></td>
-            </tr>
-            <tr>
-                <td>E-mail:</td>
-                <td id="email"></td>
-            </tr>
-            <tr>
-                <td>Social Security #:</td>
-                <td id="id"></td>
-            </tr>            
-            <tr>
-                <td>Date of Birth:</td>
-                <td id="birthDate"></td>
-            </tr>
-            <tr>
-                <td>Customer Since:</td>
-                <td id="joinedDate"></td>
-            </tr>
-        </table>
-        <div id="accounts"></div>
-        <div w3-include-html="/footer.html"></div>
+        <div id="customerTable">
+            <table>
+                <tr>
+                    <td>First Name:</td>
+                    <td id="firstName"></td>
+                </tr>
+                <tr>
+                    <td>Last Name:</td>
+                    <td id="lastName"></td>
+                </tr>
+                <tr>
+                    <td>Gender:</td>
+                    <td id="gender"></td>
+                </tr>
+                <tr>
+                    <td>Address:</td>
+                    <td id="address1"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td id="address2"></td>
+                </tr>
+                <tr>
+                    <td>Telephone:</td>
+                    <td id="phone"></td>
+                </tr>
+                <tr>
+                    <td>E-mail:</td>
+                    <td id="email"></td>
+                </tr>
+                <tr>
+                    <td>Social Security #:</td>
+                    <td id="id"></td>
+                </tr>
+                <tr>
+                    <td>Date of Birth:</td>
+                    <td id="birthDate"></td>
+                </tr>
+                <tr>
+                    <td>Customer Since:</td>
+                    <td id="joinedDate"></td>
+                </tr>
+            </table>
+            <div id="accounts"></div>
+            <div w3-include-html="/footer.html"></div>
+        </div>
+        <div id="customerImage"></div>
         <script>
             includeHTML();
             var queryString = location.search; 
@@ -96,7 +111,7 @@
             addCustomerIdToLinks(customerId);
             fetchCustomerDetails(customerId);
             fetchAccountDetails(customerId);
- 
+
             /***************************************************/
             /* Substitute real customer ID for its placeholder */
             /***************************************************/
@@ -126,6 +141,8 @@
                             case 200:
                                 var data = JSON.parse(xhr.responseText);
                                 populateCustomerDetail(data);
+                                if(data.images.length > 0)
+                                    populateCustomerImage(data);
                                 break;
                             case 404:
                                 alert("Customer ID [" + customerId + "} was not found");
@@ -155,6 +172,16 @@
                 document.getElementById("joinedDate").innerHTML = formatDate(dataRow.joinedDate);
             }
  
+            /**********************************/
+            /* Select a random customer image */
+            /**********************************/
+            function populateCustomerImage(dataRow) {
+                var imageArray = dataRow.images;
+                var index = generateRandom(0, imageArray.length-1);
+                var contents = '<img src="' + imageArray[index].src + '" alt="' + imageArray[index].alt + '"/>';
+                document.getElementById("customerImage").innerHTML = contents;
+            }
+
             /*************************/
             /* Fetch account details */
             /*************************/

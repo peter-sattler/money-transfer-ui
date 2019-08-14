@@ -41,6 +41,7 @@
         <script src="/javascripts/random.js"></script>
         <script src="/javascripts/include.js"></script>
         <script src="/javascripts/formatting.js"></script>
+        <script src="/javascripts/sultan-cookie.js"></script>
     </head>
     <body>
         <div w3-include-html="/header.html"></div>
@@ -104,7 +105,8 @@
             </table>
             <div id="accounts"></div>
             <div id="preferences">
-                <input type="checkbox" value="true" checked onclick="showHide('customerImage');"> Always display images
+                <input id="displayImages" type="checkbox" value="true" onclick="showHide('customerImage');"> Always display images
+                <a href="javascript:savePreferences('customerImage');"> (Save)</a>
             </div>
             <div w3-include-html="/footer.html"></div>
         </div>
@@ -112,7 +114,7 @@
         <script>
             includeHTML();
             var queryString = location.search; 
-            var customerId = queryString.substring(queryString.indexOf('=') + 1);
+            var customerId = queryString.substring(queryString.indexOf("=") + 1);
             console.info("Customer ID: [" + customerId + "]");
             addCustomerIdToLinks(customerId);
             fetchCustomerDetails(customerId);
@@ -176,6 +178,8 @@
                 document.getElementById("birthDate").innerHTML = formatDate(dataRow.birthDate);                
                 document.getElementById("id").innerHTML = dataRow.id;
                 document.getElementById("joinedDate").innerHTML = formatDate(dataRow.joinedDate);
+                var displayImages = getCookie("displayImages") == "0" ? false : true;
+                document.getElementById("displayImages").checked = displayImages;
             }
  
             /**********************************/
@@ -185,7 +189,9 @@
                 var imageArray = dataRow.images;
                 var index = generateRandom(0, imageArray.length-1);
                 var contents = '<img src="' + imageArray[index].src + '" alt="' + imageArray[index].alt + '"/>';
-                document.getElementById("customerImage").innerHTML = contents;
+                var customerImage = document.getElementById("customerImage");
+                customerImage.innerHTML = contents;
+                customerImage.style.display = document.getElementById("displayImages").checked ? "block" : "none";
             }
 
             /*************************/
@@ -328,11 +334,20 @@
             /* Toggle image display on and off */
             /***********************************/
             function showHide(id) {
-               var element = document.getElementById(id);
-               if(element.style.display == "" || element.style.display == 'block')
-                  element.style.display = 'none';
-               else
-                  element.style.display = 'block';
+                var element = document.getElementById(id);
+                if(element.style.display == "" || element.style.display == "block")
+                    element.style.display = "none";
+                else
+                    element.style.display = "block";
+            }
+
+            /**********************************/
+            /* Save image display as a cookie */
+            /**********************************/
+            function savePreferences(id) {
+                var element = document.getElementById(id);
+                var value = element.style.display == "block" ? "1" : "0";
+                document.cookie = "displayImages=" + value + "; path=/";
             }
         </script>
     </body>

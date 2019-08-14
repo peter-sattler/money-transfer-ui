@@ -47,6 +47,7 @@ This application is intended to be used by internal employees of *The Empire* on
 :moneybag: REST service should assign account number. It should not be the responsibility of the front-end.  
 :moneybag: REST service should not allow an account to be deleted unless it has a zero balance. Enforced this on the front-end.  
 :moneybag: Account transfer page should have drop-down lists for source and target accounts.  
+:moneybag: Used CSS for rollovers since my nav bar is text only. Javascript rollovers didn't make sense to me.  
     
 ## Lessons Learned
 

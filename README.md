@@ -40,6 +40,7 @@ Write a fully interactive front-end to an existing Java REST service while still
 :moneybag: Bidirectional mapping of customer and account entities in the API layer forced the front-end to make two separate AJAX calls for customer data and for account data on the customer details page.   
 :moneybag: REST service should assign account number. It should not be the responsibility of the front-end.  
 :moneybag: REST service should not allow an account to be deleted unless it has a zero balance. Enforced this on the front-end.  
+:moneybag: Account transfer page should have drop-down lists for source and target accounts.  
     
 ## Lessons Learned
 

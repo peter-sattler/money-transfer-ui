@@ -20,6 +20,9 @@
                 height: 25%;
                 width: 25%;
             }
+            #deleteCustomerButton {
+                background-color: red;
+            }
         </style>
         <script src="/javascripts/include.js"></script>
         <script src="/javascripts/formatting.js"></script>
@@ -165,7 +168,10 @@
                             case 0:
                             case 200:
                                 var data = JSON.parse(xhr.responseText);
-                                populateAccountDetail(customerId, data);
+                                if(data.length > 0)
+                                    populateAccountDetail(customerId, data);
+                                else
+                                    enableCustomerDeleteButton(customerId);
                                 break;
                             case 404:
                                 alert("Customer ID [" + id + "} was not found");
@@ -211,7 +217,8 @@
             /* Delete an account */
             /*********************/
             function deleteAccount(customerId, acctNbr) {
-                var message = "Are you sure you want to delete this account? \n\nRemember, The Empire knows where you live!!!";
+                var message = "Are you sure you want to delete this account? \n\n";
+                    message += "REMIND CUSTOMER: Remember, The Empire knows where you live!!!";
                 if(confirm(message)) {
                     var xhr = new XMLHttpRequest();
                     xhr.open("DELETE", "http://localhost:8080/api/money-transfer/account/" + customerId + "/" + acctNbr);
@@ -228,6 +235,46 @@
                                     break;
                                 default:
                                     alert("Unable to delete account");
+                            }
+                        }
+                    };
+                    xhr.send();
+                }
+            }
+            
+            /********************************/
+            /* Allow customer to be deleted */
+            /********************************/
+            function enableCustomerDeleteButton(customerId) {
+                var deleteButton = '<button id="deleteCustomerButton" type="button" ';
+                    deleteButton +=        'onclick="deleteCustomer(\'' + customerId + '\')">Delete Customer</button>';
+                document.getElementById("accounts").innerHTML = deleteButton;
+            }
+
+            /************************/
+            /* Delete this customer */
+            /************************/
+            function deleteCustomer(customerId) {
+                var message = "Are you sure you want to delete this customer? \n\n";
+                    message += 'REMIND CUSTOMER: The Empire will be paying you a "friendly" visit to encourage you to rejoin us. ';
+                    message += 'Our "boys" can be quite persuasive!!!';
+                if(confirm(message)) {
+                    var xhr = new XMLHttpRequest();
+                    xhr.open("DELETE", "http://localhost:8080/api/money-transfer/customer/" + customerId);
+                    xhr.onreadystatechange = function() {
+                        if(xhr.readyState === 4) {
+                            console.info("Server status:", xhr.status);
+                            switch(xhr.status) {
+                                case 0:
+                                case 204:
+                                    //Redirect back to the home page:
+                                    window.location.href = "/index.html";
+                                    break;
+                                case 404:
+                                    alert("Customer ID [" + customerId + "} was not found");
+                                    break;
+                                default:
+                                    alert("Unable to delete customer");
                             }
                         }
                     };

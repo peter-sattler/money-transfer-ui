@@ -35,6 +35,8 @@ Write a fully interactive front-end to an existing Java REST service while still
 
 ## Application Perspective
 
+**RULE #1:** There is only one bank; _Pete's World Banking Empire_. Herein referred to as _The Empire_.
+
 This application is intended to be used by internal employees of *The Empire* only. Both our branch representatives and our call center are required to use it or suffer the consequences. It includes internal reminders to apply pressure to the customer where required. After all, we are an evil empire. 
 
 ## Assumptions / Limitations 

@@ -34,9 +34,12 @@
             #deleteCustomerButton {
                 background-color: red;
             }
+            #preferences {
+                padding: 5px;
+            }
         </style>
-        <script src="/javascripts/include.js"></script>
         <script src="/javascripts/random.js"></script>
+        <script src="/javascripts/include.js"></script>
         <script src="/javascripts/formatting.js"></script>
     </head>
     <body>
@@ -100,6 +103,9 @@
                 </tr>
             </table>
             <div id="accounts"></div>
+            <div id="preferences">
+                <input type="checkbox" value="true" checked onclick="showHide('customerImage');"> Always display images
+            </div>
             <div w3-include-html="/footer.html"></div>
         </div>
         <div id="customerImage"></div>
@@ -316,6 +322,17 @@
                     };
                     xhr.send();
                 }
+            }
+
+            /***********************************/
+            /* Toggle image display on and off */
+            /***********************************/
+            function showHide(id) {
+               var element = document.getElementById(id);
+               if(element.style.display == "" || element.style.display == 'block')
+                  element.style.display = 'none';
+               else
+                  element.style.display = 'block';
             }
         </script>
     </body>

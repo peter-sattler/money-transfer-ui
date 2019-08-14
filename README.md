@@ -23,12 +23,6 @@ A separate REST API is also required.  Please follow that [project's](https://gi
 
 Once both back-end services are running, the application's home page will be available at http://localhost:3000 
 
-## Implementation Details
-
-:moneybag: Implemented using HTML, CSS and Javascript (including AJAX)  
-:moneybag: Static content is served via an embedded Express web server (https://expressjs.com)  
-:moneybag: The [JSON generator](https://next.json-generator.com) was used to create the initial test data  
-
 ## Personal Goal 
 
 Write a fully interactive front-end to an existing Java REST service while still fulfilling the final project's _Sultan-ian_ requirements.
@@ -38,6 +32,12 @@ Write a fully interactive front-end to an existing Java REST service while still
 **RULE #1:** There is only one bank; _Pete's World Banking Empire_. Herein referred to as _The Empire_.
 
 This application is intended to be used by internal employees of *The Empire* only. Both our branch representatives and our call center are required to use it or suffer the consequences. It includes internal reminders to apply pressure to the customer where required. After all, we are an evil empire. 
+
+## Implementation Details
+
+:moneybag: Implemented using HTML, CSS and Javascript (including AJAX)  
+:moneybag: Static content is served via an embedded Express web server (https://expressjs.com)  
+:moneybag: The [JSON generator](https://next.json-generator.com) was used to create the initial test data  
 
 ## Assumptions / Limitations 
 

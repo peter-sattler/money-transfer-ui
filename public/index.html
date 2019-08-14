@@ -60,17 +60,15 @@
         /***********************************/
         function displayCustomers(data) {
             var content = "<table>";
+                content += "<tr>";
+                content += "<th>SSN</th>";
+                content += "<th>First Name</th>";
+                content += "<th>Last Name</th>";
+                content += "<th>Gender</th>";
+                content += "<th>Phone</th>";
+                content += '<th colspan="4">Address</th>';
+                content += "</tr>";
             for(var row = 0; row < data.length; row++) {
-                if(row == 0) {
-                    content += "<tr>";
-                    content += "<th>SSN</th>";
-                    content += "<th>First Name</th>";
-                    content += "<th>Last Name</th>";
-                    content += "<th>Gender</th>";
-                    content += "<th>Phone</th>";
-                    content += '<th colspan="4">Address</th>';
-                    content += "</tr>";
-                }
                 content += "<tr>";
                 content += '<td><a href="/custdetail.html?id=' + data[row].id + '">' + data[row].id + "</a></td>";
                 content += "<td>" + data[row].firstName + "</td>";

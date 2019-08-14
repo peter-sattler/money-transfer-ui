@@ -54,7 +54,7 @@ Like any evil empire, our journey to world domination starts in _Toon Town_!!!
 ## Lessons Learned
 
 :moneybag: A surprising number of Looney Tune characters are MALE (law suite pending).    
-:moneybag: For the final project, always begin a Google search using the phrase _vanilla javascript_    
+:moneybag: For the final project, always begin a Google search using the phrase _vanilla javascript_ or _vanilla js_.  
 :moneybag: <ins>AJAX CORS (Cross-Origin Resource Sharing) Issues</ins> - The port number of the web server (3000) and REST service (8080) are different, so Javascript doesn’t consider them from the _same origin_. I had to add a CORS filter to the REST service in order to relax these restrictions.  
 :moneybag: <ins>HTML 5 Input Types</ins> - Both the new input types (*tel*, *email* and *date*) and built-in pattern matching worked as advertised, but did not integrate well with my overall error handling mechanism.  
 

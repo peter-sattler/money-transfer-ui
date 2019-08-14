@@ -49,7 +49,7 @@ Like any evil empire, our journey to world domination starts in _Toon Town_!!!
 :moneybag: REST service should assign account number. It should not be the responsibility of the front-end.  
 :moneybag: REST service should not allow an account to be deleted unless it has a zero balance. Enforced this on the front-end.  
 :moneybag: Account transfer page should have drop-down lists for source and target accounts.  
-:moneybag: Used CSS for rollovers since my nav bar is text only. Javascript rollovers didn't make sense to me.  
+:moneybag: Used CSS for rollovers since my navigation bar is text only. Javascript rollovers didn't make sense to me.  
 :moneybag: Used session based cookies since nothing about the application is persistent anyway.  
     
 ## Lessons Learned

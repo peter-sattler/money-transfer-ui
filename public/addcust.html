@@ -14,7 +14,7 @@
     <body>
         <div w3-include-html="/header.html"></div>
         <h2>New Customer Sign-up</h2>
-        <form id="newCustForm" name="newCustForm" method="POST" action="http://localhost:8080/api/money-transfer/customer">
+        <form id="newCustForm" name="newCustForm">
             <table>
                 <tr>
                     <td>Social Security #:</td>
@@ -115,7 +115,7 @@
                         }
                     }
                 };
-                xhr.open(newCustForm.method, newCustForm.action);
+                xhr.open("POST", "http://localhost:8080/api/money-transfer/customer");
                 xhr.setRequestHeader("Content-Type", "application/json");
                 xhr.send(json);
             }

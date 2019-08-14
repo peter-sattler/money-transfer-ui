@@ -54,5 +54,5 @@ Write a fully interactive front-end to an existing Java REST service while still
 Special thanks to Professor Sam Sultan (http://samsultan.com) for his humor, patience and knowledge of Javascript. You are an excellent instructor. It was a pleasure to be part of your class.
 
 Pete Sattler  
-13 August 2019  
+14 August 2019  
 _peter@sattler22.net_  

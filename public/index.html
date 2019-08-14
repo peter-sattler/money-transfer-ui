@@ -46,25 +46,35 @@
             if(xhr.readyState === 4) {
                 if(xhr.status == 0 || xhr.status === 200) {
                     var data = JSON.parse(xhr.responseText);
-                    displayCustomers(data);
+                    if(data.length > 0) {
+                        data.sort(byCustomerIdAscending);
+                        displayCustomers(data);
+                    }
+                    else
+                        displayNoCustomers();
                 }
-                else {
-                    document.getElementById("customers").innerHTML = "<h2>No customer data was returned</h2>";
-                }
+                else
+                    displayNoCustomers();
             }
         };
         xhr.send();
+        
+        /******************************************/
+        /* Sort by customer id in ascending order */
+        /******************************************/
+        function byCustomerIdAscending(data1, data2) {
+            if(data1.id > data2.id)
+                return 1;
+            if(data1.id < data2.id)
+                return -1;
+            return 0;
+        }
         
         /***********************************/
         /* Creates the customer data table */
         /***********************************/
         function displayCustomers(data) {
-            var content;
-            if(data.length == 0) {
-                content = "<h2>No customer data was returned</h2>";
-            }
-            else {
-                content = "<table>";
+            var content = "<table>";
                 content += "<tr>";
                 content += "<th>SSN</th>";
                 content += "<th>First Name</th>";
@@ -73,22 +83,28 @@
                 content += "<th>Phone</th>";
                 content += '<th colspan="4">Address</th>';
                 content += "</tr>";
-                for(var row = 0; row < data.length; row++) {
-                    content += "<tr>";
-                    content += '<td><a href="/custdetail.html?id=' + data[row].id + '">' + data[row].id + "</a></td>";
-                    content += "<td>" + data[row].firstName + "</td>";
-                    content += "<td>" + data[row].lastName + "</td>";
-                    content += "<td>" + data[row].gender + "</td>";
-                    content += "<td>" + data[row].phone + "</td>";
-                    content += "<td>" + data[row].address.street + "</td>";
-                    content += "<td>" + data[row].address.city + "</td>";
-                    content += "<td>" + data[row].address.state + "</td>";
-                    content += "<td>" + data[row].address.zip + "</td>";
-                    content += "</tr>";
-                }
-                content += "</table>";
+            for(var row = 0; row < data.length; row++) {
+                content += "<tr>";
+                content += '<td><a href="/custdetail.html?id=' + data[row].id + '">' + data[row].id + "</a></td>";
+                content += "<td>" + data[row].firstName + "</td>";
+                content += "<td>" + data[row].lastName + "</td>";
+                content += "<td>" + data[row].gender + "</td>";
+                content += "<td>" + data[row].phone + "</td>";
+                content += "<td>" + data[row].address.street + "</td>";
+                content += "<td>" + data[row].address.city + "</td>";
+                content += "<td>" + data[row].address.state + "</td>";
+                content += "<td>" + data[row].address.zip + "</td>";
+                content += "</tr>";
             }
+            content += "</table>";
             document.getElementById("customers").innerHTML = content;
+        }
+
+        /**********************************************/ß
+        /* Let user know that no customers were found */
+        /**********************************************/
+        function displayNoCustomers() {
+            document.getElementById("customers").innerHTML = "<h2>No customer data was returned</h2>";
         }
     </script>
 </html>

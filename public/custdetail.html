@@ -13,10 +13,10 @@
             th, td {
                 padding: 5px;
             }
-            #delete {
+            .delete {
                 text-align: center;
             }
-            #delete img {
+            .delete img {
                 height: 25%;
                 width: 25%;
             }
@@ -165,7 +165,7 @@
                             case 0:
                             case 200:
                                 var data = JSON.parse(xhr.responseText);
-                                populateAccountDetail(data);
+                                populateAccountDetail(customerId, data);
                                 break;
                             case 404:
                                 alert("Customer ID [" + id + "} was not found");
@@ -181,26 +181,58 @@
             /***********************************/
             /* Creates the customer data table */
             /***********************************/
-            function populateAccountDetail(data) {
+            function populateAccountDetail(customerId, data) {
                 var content = "<table>";
+                    content += "<tr>";
+                    content += "<th>Account #</th>";
+                    content += "<th>Type</th>";
+                    content += "<th>Balance</th>";
+                    content += "<th>Delete</th>";
+                    content += "</tr>";
                 for(var row = 0; row < data.length; row++) {
-                    if(row == 0) {
-                        content += "<tr>";
-                        content += "<th>Account #</th>";
-                        content += "<th>Type</th>";
-                        content += "<th>Balance</th>";
-                        content += "<th>Delete</th>";
-                        content += "</tr>";
-                    }
                     content += "<tr>";
                     content += "<td>" + data[row].number + "</td>";
                     content += "<td>" + data[row].type + "</td>";
                     content += "<td>" + formatMoney(data[row].balance) + "</td>";
-                    content += '<td id="delete"><img src="/images/delete.png" alt="Delete"></td>';
+                    if(data[row].balance == 0) {
+                        content += '<td class="delete">';
+                        content += '<a href="javascript:void(0)" alt="Delete this account"';
+                        content += 'onclick="deleteAccount(\'' + customerId + '\',\'' + data[row].number + '\')">';
+                        content += '<img src="/images/delete.png"/><a>';
+                        content += "</td>";
+                    }
                     content += "</tr>";
                 }
                 content += "</table>";
                 document.getElementById("accounts").innerHTML = content;
+            }
+
+            /*********************/
+            /* Delete an account */
+            /*********************/
+            function deleteAccount(customerId, acctNbr) {
+                var message = "Are you sure you want to delete this account? \n\nRemember, The Empire knows where you live!!!";
+                if(confirm(message)) {
+                    var xhr = new XMLHttpRequest();
+                    xhr.open("DELETE", "http://localhost:8080/api/money-transfer/account/" + customerId + "/" + acctNbr);
+                    xhr.onreadystatechange = function() {
+                        if(xhr.readyState === 4) {
+                            console.info("Server status:", xhr.status);
+                            switch(xhr.status) {
+                                case 0:
+                                case 204:
+                                    window.location.reload();
+                                    break;
+                                case 404:
+                                    alert("Customer or account not found");
+                                    break;
+                                default:
+                                    alert("Unable to delete account");
+                            }
+                        }
+                    };
+                    xhr.send();
+                }
             }
         </script>
     </body>

@@ -168,8 +168,10 @@
                             case 0:
                             case 200:
                                 var data = JSON.parse(xhr.responseText);
-                                if(data.length > 0)
-                                    populateAccountDetail(customerId, data);
+                                if(data.length > 0) {
+                                    data.sort(byAccountNumberAscending);
+                                    populateAccountDetails(customerId, data);
+                                }
                                 else
                                     enableCustomerDeleteButton(customerId);
                                 break;
@@ -183,11 +185,18 @@
                 };
                 xhr.send();
             }
+
+            /*********************************************/
+            /* Sort by account number in ascending order */
+            /*********************************************/
+            function byAccountNumberAscending(data1, data2) {
+                return parseInt(data1.number) - parseInt(data2.number);
+            }
             
-            /***********************************/
-            /* Creates the customer data table */
-            /***********************************/
-            function populateAccountDetail(customerId, data) {
+            /*************************************/
+            /* Creates the account details table */
+            /*************************************/
+            function populateAccountDetails(customerId, data) {
                 var content = "<table>";
                     content += "<tr>";
                     content += "<th>Account #</th>";
@@ -242,9 +251,9 @@
                 }
             }
             
-            /********************************/
-            /* Allow customer to be deleted */
-            /********************************/
+            /************************************/
+            /* Allow the customer to be deleted */
+            /************************************/
             function enableCustomerDeleteButton(customerId) {
                 var deleteButton = '<button id="deleteCustomerButton" type="button" ';
                     deleteButton +=        'onclick="deleteCustomer(\'' + customerId + '\')">Delete Customer</button>';

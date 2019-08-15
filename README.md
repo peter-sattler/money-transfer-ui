@@ -1,5 +1,5 @@
 # Money Transfer Web UI
-![Money Stack](https://github.com/peter-sattler/money-transfer-api/blob/master/img/money-stack.gif)
+![Money Stack](https://github.com/peter-sattler/money-transfer-ui/blob/master/public/images/nyu-sps-logo.jpg)
 
 # Background
 

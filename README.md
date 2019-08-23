@@ -3,7 +3,7 @@
 
 # Background
 
-This web user interface (UI) was created for and submitted as the final project in a JAVASCRIPT - FULL STACK WEB DEVELOPMENT. This course (INFO1-CE9755) was held at New York University's School of Professional Studies (NYU SPS) during the Summer of 2019. This project concentrates on the basics; avoiding heavy Javascript frameworks like JQuery.
+This web user interface (UI) was created for and submitted as the final project in JAVASCRIPT - FULL STACK WEB DEVELOPMENT. This course (INFO1-CE9755) was held at New York University's School of Professional Studies (NYU SPS) during the Summer of 2019. This project concentrates on the basics; avoiding heavy Javascript frameworks like JQuery.
 
 # Project Requirements
 

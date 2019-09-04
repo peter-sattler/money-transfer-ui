@@ -1,5 +1,5 @@
 # Money Transfer Web UI
-![Money Stack](https://github.com/peter-sattler/money-transfer-ui/blob/master/public/images/nyu-sps-logo.jpg)
+[![NYU SPS Badge](http://basno.com/5mt19i5p.png)](http://basno.com/5mt19i5p)
 
 # Background
 

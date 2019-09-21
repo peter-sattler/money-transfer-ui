@@ -22,22 +22,17 @@
                     <td></td>
                 </tr>
                 <tr>
-                    <td>Account #:</td>
-                    <td><input type="text" name="number"/></td>
-                    <td><span id="f1" class="hide">*</span></td>
-                </tr>
-                <tr>
                     <td>Type:</td>
                     <td>
                         <input type="radio" name="type" value="CHECKING"/>Checking
                         <input type="radio" name="type" value="SAVINGS"/>Savings
                     </td>
-                    <td><span id="f2" class="hide">*</span></td>
+                    <td><span id="f1" class="hide">*</span></td>
                 </tr>             
                 <tr>
                     <td>Opening Balance:</td>
                     <td><input type="text" name="balance"/></td>
-                    <td><span id="f3" class="hide">*</span></td>
+                    <td><span id="f2" class="hide">*</span></td>
                 </tr>
             </table>
             <div id="instructions" class="hide">Please correct the errors above</div>
@@ -80,8 +75,6 @@
                                 alert("Customer ID [" + customerId + "} was not found");
                                 break;                                
                             case 409:
-                                alert("Account already exists");
-                                break;
                             default:
                                 alert("Unable to add new account");
                         }
@@ -120,22 +113,16 @@
             /**************************/
             function isDataValid(newAcctForm) {
                 var nbrErrors = 0;
-                //Account number:
+                //Account type:
                 document.getElementById("f1").className = "hide";
-                if(newAcctForm.number.value == "") {
+                if(!(newAcctForm.type[0].checked || newAcctForm.type[1].checked)) {
                     document.getElementById("f1").className = "show";
                     nbrErrors++;
                 }
-                //Account type:
-                document.getElementById("f2").className = "hide";
-                if(!(newAcctForm.type[0].checked || newAcctForm.type[1].checked)) {
-                    document.getElementById("f2").className = "show";
-                    nbrErrors++;
-                }
                 //Opening balance:
-                document.getElementById("f3").className = "hide";
+                document.getElementById("f2").className = "hide";
                 if(newAcctForm.balance.value == "") {
-                    document.getElementById("f3").className = "show";
+                    document.getElementById("f2").className = "show";
                     nbrErrors++;
                 }
                 //User instructions:

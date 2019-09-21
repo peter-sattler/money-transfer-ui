@@ -58,7 +58,7 @@ Like any evil empire, our journey to world domination starts in _Toon Town_.
 :moneybag: <ins>HTML 5 Input Types</ins> - Both the new input types (*tel*, *email* and *date*) and built-in pattern matching worked as advertised, but did not integrate well with my overall error handling mechanism.  
 
 ## [Version 1.0.1] September 2019 Updates
-:moneybag: Removed account number field since REST service now automtically assigns it.  
+:moneybag: Removed account number field since REST service now automatically assigns it.  
 
 ## Special Thanks
 

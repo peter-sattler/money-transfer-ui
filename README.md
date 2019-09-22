@@ -59,6 +59,7 @@ Like any evil empire, our journey to world domination starts in _Toon Town_.
 
 ## [Version 1.0.1] September 2019 Updates
 :moneybag: Removed account number field since REST service now automatically assigns it.  
+:moneybag: Show transfer link only when there are at least two accounts.   
 
 ## Special Thanks
 

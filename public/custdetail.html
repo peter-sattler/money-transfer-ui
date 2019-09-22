@@ -10,6 +10,9 @@
         <link rel="stylesheet" href="/stylesheets/header.css">
         <link rel="stylesheet" href="/stylesheets/navbar.css">
         <style>
+            #transferLink {
+                display: none;
+            }
             th, td {
                 padding: 5px;
             }
@@ -53,7 +56,8 @@
                        onclick="open('/addaccount.html?customerId=__CUSTOMER_ID__',
                                      'addAccountPopup',
                                      'width=600, height=600, left=0, top=0')">Add Account</a></li>
-                <li><a name="replaceCustomerId"
+                <li><a id="transferLink"
+                       name="replaceCustomerId"
                        href="javascript:void(0)"
                        onclick="open('/transfer.html?customerId=__CUSTOMER_ID__',
                                      'transferPopup',
@@ -209,6 +213,7 @@
                                 var data = JSON.parse(xhr.responseText);
                                 if(data.length > 0) {
                                     data.sort(byAccountNumberAscending);
+                                    processTransferLink(data.length);
                                     populateAccountDetails(customerId, data);
                                 }
                                 else
@@ -232,6 +237,17 @@
                 return parseInt(data1.number) - parseInt(data2.number);
             }
             
+            /**************************************************************/
+            /* Show transfer link only if there are at least two accounts */
+            /**************************************************************/
+            function processTransferLink(nbrOfAccounts) {
+                var transferLink = document.getElementById("transferLink");
+                if(nbrOfAccounts == 1)
+                    transferLink.style.display = "none";
+                else
+                    transferLink.style.display = "inline-block";
+            }
+
             /*************************************/
             /* Creates the account details table */
             /*************************************/
@@ -331,9 +347,9 @@
                 }
             }
 
-            /***********************************/
-            /* Toggle image display on and off */
-            /***********************************/
+            /******************************************/
+            /* Toggle an element's display on and off */
+            /******************************************/
             function showHide(id) {
                 var element = document.getElementById(id);
                 if(element.style.display == "" || element.style.display == "block")

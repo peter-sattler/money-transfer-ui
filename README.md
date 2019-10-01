@@ -45,7 +45,6 @@ Like any evil empire, our journey to world domination starts in _Toon Town_.
 
 :moneybag: I did NOT strive for cross-browser compatibility (tested on Safari only).  
 :moneybag: Customer images are available for pre-loaded data only.  
-:moneybag: Bidirectional mapping of customer and account entities in the API layer forced the front-end to make two separate AJAX calls for customer data and for account data on the customer details page.   
 :moneybag: Account transfer page should have drop-down lists for source and target accounts.  
 :moneybag: Used CSS for rollovers since my navigation bar is text only. Javascript rollovers didn't make sense to me.  
 :moneybag: Used session based cookies since nothing about the application is persistent anyway.  
@@ -59,7 +58,8 @@ Like any evil empire, our journey to world domination starts in _Toon Town_.
 
 ## [Version 1.0.1] September 2019 Updates
 :moneybag: Removed account number field since REST service now automatically assigns it.  
-:moneybag: Show transfer link only when there are at least two accounts.   
+:moneybag: Show transfer link only when there are at least two accounts.  
+:moneybag: Check for concurrent update conditions from back-end.  
 
 ## Special Thanks
 

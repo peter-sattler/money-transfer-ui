@@ -215,6 +215,8 @@
                                     data.sort(byAccountNumberAscending);
                                     processTransferLink(data.length);
                                     populateAccountDetails(customerId, data);
+                                    //Pass to transfer page:
+                                    sessionStorage.setItem("accountDetails", JSON.stringify(data));
                                 }
                                 else
                                     enableCustomerDeleteButton(customerId);

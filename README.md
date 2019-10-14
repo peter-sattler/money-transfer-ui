@@ -45,7 +45,6 @@ Like any evil empire, our journey to world domination starts in _Toon Town_.
 
 :moneybag: I did NOT strive for cross-browser compatibility (tested on Safari only).  
 :moneybag: Customer images are available for pre-loaded data only.  
-:moneybag: Account transfer page should have drop-down lists for source and target accounts.  
 :moneybag: Used CSS for rollovers since my navigation bar is text only. Javascript rollovers didn't make sense to me.  
 :moneybag: Used session based cookies since nothing about the application is persistent anyway.  
     
@@ -56,10 +55,15 @@ Like any evil empire, our journey to world domination starts in _Toon Town_.
 :moneybag: <ins>AJAX CORS (Cross-Origin Resource Sharing) Issues</ins> - The port number of the web server (3000) and REST service (8080) are different, so Javascript doesn’t consider them from the _same origin_. I had to add a CORS filter to the REST service in order to relax these restrictions.  
 :moneybag: <ins>HTML 5 Input Types</ins> - Both the new input types (*tel*, *email* and *date*) and built-in pattern matching worked as advertised, but did not integrate well with my overall error handling mechanism.  
 
-## [Version 1.0.1] September 2019 Updates
+## Enhancement History
+
+### [Version 1.0.1] September 2019 Updates
 :moneybag: Removed account number field since REST service now automatically assigns it.  
 :moneybag: Show transfer link only when there are at least two accounts.  
 :moneybag: Check for concurrent update conditions from back-end.  
+
+### [Version 1.0.2] October 2019 Updates
+:moneybag: Added source and target account drop-downs to transfer page.  
 
 ## Special Thanks
 

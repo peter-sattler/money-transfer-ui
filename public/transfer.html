@@ -25,7 +25,9 @@
                 <tr>
                     <td>From Account:</td>
                     <td>
-                        <select id="sourceNumber" name="sourceNumber" size="1">
+                        <select id="sourceNumber" name="sourceNumber" size="1"
+                                onchange="filterDropDown(this, 'targetNumber');"
+                                filtered="false">
                         </select>
                     </td>
                     <td><span id="f1" class="hide">*</span></td>
@@ -33,7 +35,9 @@
                 <tr>
                     <td>To Account:</td>
                     <td>
-                        <select id="targetNumber" name="targetNumber" size="1">
+                        <select id="targetNumber" name="targetNumber" size="1"
+                                onchange="filterDropDown(this, 'sourceNumber');"
+                                filtered="false">
                         </select>
                     </td>
                     <td><span id="f2" class="hide">*</span></td>
@@ -89,6 +93,28 @@
                 if(value)
                     option.setAttribute("value", value);
                 return option;
+            }
+
+            /**********************************************************************/
+            /* Filter out the currently selected account from the other drop-down */
+            /**********************************************************************/
+            function filterDropDown(currentDropDown, otherDropDownId) {
+                if(!JSON.parse(currentDropDown.getAttribute("filtered"))) {
+                    var currentValue = currentDropDown.options[currentDropDown.selectedIndex].value;
+                    var otherDropDown = document.getElementById(otherDropDownId);
+                    otherDropDown.length = 0;    //Erase entire options list
+                    populateDropDownOptions(otherDropDownId);
+                    for(var i = 0; i < otherDropDown.length; i++) {
+                        if(otherDropDown[i].value == currentValue) {
+                            otherDropDown.remove(i);
+                            break;
+                        }
+                    }
+                    //Remove instructions if only one account left:
+                    if(otherDropDown.length == 2)
+                        otherDropDown.remove(0);
+                    otherDropDown.setAttribute("filtered", true);
+                }
             }
 
             /*****************************************/

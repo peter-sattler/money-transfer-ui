@@ -58,12 +58,12 @@ Like any evil empire, our journey to world domination starts in _Toon Town_.
 ## Enhancement History
 
 ### [Version 1.0.1] September 2019 Updates
-:moneybag: Removed account number field since REST service now automatically assigns it.  
+:moneybag: Removed account number field since the underlying REST service now automatically assigns it.  
 :moneybag: Show transfer link only when there are at least two accounts.  
 :moneybag: Check for concurrent update conditions from back-end.  
 
 ### [Version 1.0.2] October 2019 Updates
-:moneybag: Added source and target account smart drop-downs to transfer page (account selection in one removes it from the other).  
+:moneybag: Added source and target account smart drop-downs to transfer page (selection in one removes it from the other).  
 
 ## Special Thanks
 

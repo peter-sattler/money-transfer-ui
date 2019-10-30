@@ -63,7 +63,7 @@ Like any evil empire, our journey to world domination starts in _Toon Town_.
 :moneybag: Check for concurrent update conditions from back-end.  
 
 ### [Version 1.0.2] October 2019 Updates
-:moneybag: Added source and target account smart drop-downs to transfer page (selection of an account in one drop-down removes it from the other).  
+:moneybag: Added source and target account smart drop-downs to transfer page (account selection in one removes it from the other).  
 
 ## Special Thanks
 

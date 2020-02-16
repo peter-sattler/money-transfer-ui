@@ -11,17 +11,21 @@ Design and develop a web project on any subject you wish, providing that the con
 
 ## Getting Started
 
-These instructions will get you a copy of this project up and running on your local machine. Once the WEB service is running, it will serve all the static content that is needed.
+These instructions will get you a copy of this project up and running on your local machine. 
 
+1. Download and install the LTS version of Node.js (https://nodejs.org/en/)
+2. Install the Express web server (https://expressjs.com) that will serve all static content: 
+```text
+npm install express --save
+```
+3. Clone the Git repository and start the web server:
 ```text
 git clone https://github.com/peter-sattler/money-transfer-ui
 cd money-transfer-ui
 npm start
 ```
-
-A separate REST API is also required.  Please follow that [project's](https://github.com/peter-sattler/money-transfer-api/blob/master/README.md) instructions for proper set-up
-
-Once both back-end services are running, the application's home page will be available at http://localhost:3000 
+4. A separate REST API is also required.  Please follow that [project's](https://github.com/peter-sattler/money-transfer-api/blob/master/README.md) instructions for proper set-up
+5. Once both back-end services are running, the application's home page will be available at http://localhost:3000 
 
 ## Personal Goal 
 

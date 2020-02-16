@@ -10,6 +10,7 @@
         <link rel="stylesheet" href="/stylesheets/header.css">
         <link rel="stylesheet" href="/stylesheets/form-validation.css">
         <script src="/javascripts/include.js"></script>
+        <script src="/javascripts/formatting.js"></script>
     </head>
     <body>
         <div w3-include-html="/header.html"></div>
@@ -22,13 +23,23 @@
                     <td></td>
                 </tr>
                 <tr>
-                    <td>From Account #:</td>
-                    <td><input type="text" name="sourceNumber"/></td>
+                    <td>From Account:</td>
+                    <td>
+                        <select id="sourceNumber" name="sourceNumber" size="1"
+                                onchange="filterDropDown(this, 'targetNumber');"
+                                filtered="false">
+                        </select>
+                    </td>
                     <td><span id="f1" class="hide">*</span></td>
                 </tr> 
                 <tr>
-                    <td>To Account #:</td>
-                    <td><input type="text" name="targetNumber"/></td>
+                    <td>To Account:</td>
+                    <td>
+                        <select id="targetNumber" name="targetNumber" size="1"
+                                onchange="filterDropDown(this, 'sourceNumber');"
+                                filtered="false">
+                        </select>
+                    </td>
                     <td><span id="f2" class="hide">*</span></td>
                 </tr>                 
                 <tr>
@@ -46,13 +57,63 @@
         <div w3-include-html="/footer.html"></div>
         <script>
             includeHTML();
+            const dropDownInstructions = "--Select an account--";
             var queryString = location.search; 
             var customerId = queryString.substring(queryString.indexOf('=') + 1);
             console.info("Customer ID: [" + customerId + "]");
             document.getElementById("customerId").innerHTML = customerId;
+            populateDropDownOptions("sourceNumber");
+            populateDropDownOptions("targetNumber");
             var transferForm = document.getElementById("transferForm");
             transferForm.addEventListener("submit", onSubmitHandler);
-            
+
+            /**********************************/
+            /* Populate the drop-down options */
+            /**********************************/
+            function populateDropDownOptions(id) {
+                var dropDown = document.getElementById(id);
+                dropDown.appendChild(createOption(dropDownInstructions, true));
+                var data = JSON.parse(sessionStorage.getItem("accountDetails"));
+                for(var row = 0; row < data.length; row++) {
+                    var accountOptionText = data[row].type + " (#" + data[row].number + ", " + formatMoney(data[row].balance) + ")";
+                    var accountOption = createOption(accountOptionText, false, data[row].number);
+                    dropDown.appendChild(accountOption);
+                }
+            }
+
+            /***********************/
+            /* Create a new option */
+            /***********************/
+            function createOption(text, selected, value) {
+                var option = document.createElement("option");
+                option.innerHTML = text;
+                option.type = "option";
+                if(selected)
+                    option.setAttribute("selected", true);
+                if(value)
+                    option.setAttribute("value", value);
+                return option;
+            }
+
+            /**********************************************************************/
+            /* Filter out the currently selected account from the other drop-down */
+            /**********************************************************************/
+            function filterDropDown(currentDropDown, otherDropDownId) {
+                if(!JSON.parse(currentDropDown.getAttribute("filtered"))) {
+                    var currentValue = currentDropDown.options[currentDropDown.selectedIndex].value;
+                    var otherDropDown = document.getElementById(otherDropDownId);
+                    otherDropDown.length = 0;    //Erase entire options list
+                    populateDropDownOptions(otherDropDownId);
+                    for(var i = 0; i < otherDropDown.length; i++) {
+                        if(otherDropDown[i].value == currentValue) {
+                            otherDropDown.remove(i);
+                            break;
+                        }
+                    }
+                    otherDropDown.setAttribute("filtered", true);
+                }
+            }
+
             /*****************************************/
             /* Transfer funds by making an AJAX call */
             /*****************************************/    
@@ -99,15 +160,19 @@
             /*****************************/
             function toJSONString(transferForm) {
                 var formData = {};
-                var elements = transferForm.querySelectorAll("input");
+                var elements = transferForm.querySelectorAll("input, option:checked");
                 formData["customerId"] = customerId;
                 for(var i = 0; i < elements.length; i++) {
                     var element = elements[i];
                     if(element.type == "submit" || element.type == "reset")
                         continue;
-                    if(element.name) {
-                        formData[element.name] = element.value;
+                    if(element.type == "option") {
+                        var name = element.parentElement.name;
+                        formData[name] = element.value;
+                        continue;
                     }
+                    if(element.name)
+                        formData[element.name] = element.value;
                 }
                 return JSON.stringify(formData);
             }
@@ -119,19 +184,19 @@
                 var nbrErrors = 0;
                 //Source account number:
                 document.getElementById("f1").className = "hide";
-                if(transferForm.sourceNumber.value == "") {
+                if(transferForm.sourceNumber.value == dropDownInstructions) {
                     document.getElementById("f1").className = "show";
                     nbrErrors++;
                 }
                 //Target account number:
                 document.getElementById("f2").className = "hide";
-                if(transferForm.targetNumber.value == "") {
+                if(transferForm.targetNumber.value == dropDownInstructions) {
                     document.getElementById("f2").className = "show";
                     nbrErrors++;
                 }                
                 //Transfer amount:
                 document.getElementById("f3").className = "hide";
-                if(transferForm.amount.value == "") {
+                if(transferForm.amount.value == "" || transferForm.amount.value == 0) {
                     document.getElementById("f3").className = "show";
                     nbrErrors++;
                 }

@@ -11,17 +11,21 @@ Design and develop a web project on any subject you wish, providing that the con
 
 ## Getting Started
 
-These instructions will get you a copy of this project up and running on your local machine. Once the WEB service is running, it will serve all the static content that is needed.
+These instructions will get you a copy of this project up and running on your local machine. 
 
+1. Download and install the LTS version of Node.js (https://nodejs.org/en/)
+2. Install the Express web server (https://expressjs.com) that will serve all static content: 
+```text
+npm install express --save
+```
+3. Clone the Git repository and start the web server:
 ```text
 git clone https://github.com/peter-sattler/money-transfer-ui
 cd money-transfer-ui
 npm start
 ```
-
-A separate REST API is also required.  Please follow that [project's](https://github.com/peter-sattler/money-transfer-api/blob/master/README.md) instructions for proper set-up
-
-Once both back-end services are running, the application's home page will be available at http://localhost:3000 
+4. A separate REST API is also required.  Please follow that [project's](https://github.com/peter-sattler/money-transfer-api/blob/master/README.md) instructions for proper set-up
+5. Once both back-end services are running, the application's home page will be available at http://localhost:3000 
 
 ## Personal Goal 
 
@@ -45,7 +49,6 @@ Like any evil empire, our journey to world domination starts in _Toon Town_.
 
 :moneybag: I did NOT strive for cross-browser compatibility (tested on Safari only).  
 :moneybag: Customer images are available for pre-loaded data only.  
-:moneybag: Account transfer page should have drop-down lists for source and target accounts.  
 :moneybag: Used CSS for rollovers since my navigation bar is text only. Javascript rollovers didn't make sense to me.  
 :moneybag: Used session based cookies since nothing about the application is persistent anyway.  
     
@@ -56,10 +59,15 @@ Like any evil empire, our journey to world domination starts in _Toon Town_.
 :moneybag: <ins>AJAX CORS (Cross-Origin Resource Sharing) Issues</ins> - The port number of the web server (3000) and REST service (8080) are different, so Javascript doesn’t consider them from the _same origin_. I had to add a CORS filter to the REST service in order to relax these restrictions.  
 :moneybag: <ins>HTML 5 Input Types</ins> - Both the new input types (*tel*, *email* and *date*) and built-in pattern matching worked as advertised, but did not integrate well with my overall error handling mechanism.  
 
-## [Version 1.0.1] September 2019 Updates
-:moneybag: Removed account number field since REST service now automatically assigns it.  
+## Enhancement History
+
+### [Version 1.0.1] September 2019 Updates
+:moneybag: Removed account number field since the underlying REST service now automatically assigns it.  
 :moneybag: Show transfer link only when there are at least two accounts.  
 :moneybag: Check for concurrent update conditions from back-end.  
+
+### [Version 1.0.2] October 2019 Updates
+:moneybag: Added source and target account smart drop-downs to transfer page (selection in one removes it from the other).  
 
 ## Special Thanks
 

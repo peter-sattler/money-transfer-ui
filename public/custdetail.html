@@ -41,27 +41,19 @@
                 padding: 5px;
             }
         </style>
-        <script src="/javascripts/random.js"></script>
-        <script src="/javascripts/include.js"></script>
+        <script src="/javascripts/copyright.js"></script>
         <script src="/javascripts/formatting.js"></script>
+        <script src="/javascripts/random.js"></script>
         <script src="/javascripts/sultan-cookie.js"></script>
+        <script src="/javascripts/w3-include.js"></script>
     </head>
     <body>
         <div w3-include-html="/header.html"></div>
         <h2>Customer Details</h2>
         <div class="navbar">
             <ul>
-                <li><a name="replaceCustomerId"
-                       href="javascript:void(0)"
-                       onclick="open('/addaccount.html?customerId=__CUSTOMER_ID__',
-                                     'addAccountPopup',
-                                     'width=600, height=600, left=0, top=0')">Add Account</a></li>
-                <li><a id="transferLink"
-                       name="replaceCustomerId"
-                       href="javascript:void(0)"
-                       onclick="open('/transfer.html?customerId=__CUSTOMER_ID__',
-                                     'transferPopup',
-                                     'width=600, height=600, left=0, top=0')">Transfer Funds</a></li>
+                <li><a name="replaceCustomerId" href="javascript:void(0)" onclick="open('/addaccount.html?customerId=__CUSTOMER_ID__', 'addAccountPopup', 'width=600, height=600, left=0, top=0')">Add Account</a></li>
+                <li><a id="transferLink" name="replaceCustomerId" href="javascript:void(0)" onclick="open('/transfer.html?customerId=__CUSTOMER_ID__', 'transferPopup', 'width=600, height=600, left=0, top=0')">Transfer Funds</a></li>
             </ul>
         </div>
         <div id="customerTable">
@@ -109,14 +101,13 @@
             </table>
             <div id="accounts"></div>
             <div id="preferences">
-                <input id="displayImages" type="checkbox" value="true" onclick="showHide('customerImage');"> Always display images
-                <a href="javascript:savePreferences('customerImage');"> (Save)</a>
+                <input id="displayImages" type="checkbox" value="true" onclick="showHide('customerImage');"> Always display images <a href="javascript:savePreferences('customerImage');">(Save)</a>
             </div>
             <div w3-include-html="/footer.html"></div>
         </div>
         <div id="customerImage"></div>
         <script>
-            includeHTML();
+            includeHTML(updateCopyrightYear);
             var queryString = location.search; 
             var customerId = queryString.substring(queryString.indexOf("=") + 1);
             console.info("Customer ID: [" + customerId + "]");
@@ -144,7 +135,7 @@
             /**************************/
             function fetchCustomerDetails(customerId) {
                 var xhr = new XMLHttpRequest();
-                xhr.open("GET", "http://localhost:8080/api/money-transfer/customer/" + customerId);
+                xhr.open("GET", "http://localhost:8080/api/v1/money-transfer/customer/" + customerId);
                 xhr.onreadystatechange = function() {
                     if(xhr.readyState === 4) {
                         console.info("Server status:", xhr.status);
@@ -203,7 +194,7 @@
             /*************************/
             function fetchAccountDetails(customerId) {
                 var xhr = new XMLHttpRequest();
-                xhr.open("GET", "http://localhost:8080/api/money-transfer/accounts/" + customerId);
+                xhr.open("GET", "http://localhost:8080/api/v1/money-transfer/accounts/" + customerId);
                 xhr.onreadystatechange = function() {
                     if(xhr.readyState === 4) {
                         console.info("Server status:", xhr.status);
@@ -287,7 +278,7 @@
                     message += "REMIND CUSTOMER: Remember, The Empire knows where you live!!!";
                 if(confirm(message)) {
                     var xhr = new XMLHttpRequest();
-                    xhr.open("DELETE", "http://localhost:8080/api/money-transfer/account/" + customerId + "/" + acctNbr);
+                    xhr.open("DELETE", "http://localhost:8080/api/v1/money-transfer/account/" + customerId + "/" + acctNbr);
                     xhr.onreadystatechange = function() {
                         if(xhr.readyState === 4) {
                             console.info("Server status:", xhr.status);
@@ -326,7 +317,7 @@
                     message += 'Our "boys" can be quite persuasive!!!';
                 if(confirm(message)) {
                     var xhr = new XMLHttpRequest();
-                    xhr.open("DELETE", "http://localhost:8080/api/money-transfer/customer/" + customerId);
+                    xhr.open("DELETE", "http://localhost:8080/api/v1/money-transfer/customer/" + customerId);
                     xhr.onreadystatechange = function() {
                         if(xhr.readyState === 4) {
                             console.info("Server status:", xhr.status);

@@ -9,7 +9,8 @@
         <link rel="shortcut icon" href="/favicon.ico"/>
         <link rel="stylesheet" href="/stylesheets/header.css">
         <link rel="stylesheet" href="/stylesheets/form-validation.css">
-        <script src="/javascripts/include.js"></script>
+        <script src="/javascripts/copyright.js"></script>
+        <script src="/javascripts/w3-include.js"></script>
     </head>
     <body>
         <div w3-include-html="/header.html"></div>
@@ -43,7 +44,7 @@
         </form>
         <div w3-include-html="/footer.html"></div>
         <script>
-            includeHTML();
+            includeHTML(updateCopyrightYear);
             var queryString = location.search; 
             var customerId = queryString.substring(queryString.indexOf('=') + 1);
             console.info("Customer ID: [" + customerId + "]");
@@ -80,7 +81,7 @@
                         }
                     }
                 };
-                xhr.open("POST", "http://localhost:8080/api/money-transfer/account");
+                xhr.open("POST", "http://localhost:8080/api/v1/money-transfer/account");
                 xhr.setRequestHeader("Content-Type", "application/json");
                 xhr.send(json);
             }

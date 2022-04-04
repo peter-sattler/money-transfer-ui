@@ -9,8 +9,9 @@
         <link rel="shortcut icon" href="/favicon.ico"/>
         <link rel="stylesheet" href="/stylesheets/header.css">
         <link rel="stylesheet" href="/stylesheets/form-validation.css">
-        <script src="/javascripts/include.js"></script>
+        <script src="/javascripts/copyright.js"></script>
         <script src="/javascripts/formatting.js"></script>
+        <script src="/javascripts/w3-include.js"></script>
     </head>
     <body>
         <div w3-include-html="/header.html"></div>
@@ -25,20 +26,14 @@
                 <tr>
                     <td>From Account:</td>
                     <td>
-                        <select id="sourceNumber" name="sourceNumber" size="1"
-                                onchange="filterDropDown(this, 'targetNumber');"
-                                filtered="false">
-                        </select>
+                        <select id="sourceNumber" name="sourceNumber" size="1" onchange="filterDropDown(this, 'targetNumber');" filtered="false"></select>
                     </td>
                     <td><span id="f1" class="hide">*</span></td>
                 </tr> 
                 <tr>
                     <td>To Account:</td>
                     <td>
-                        <select id="targetNumber" name="targetNumber" size="1"
-                                onchange="filterDropDown(this, 'sourceNumber');"
-                                filtered="false">
-                        </select>
+                        <select id="targetNumber" name="targetNumber" size="1" onchange="filterDropDown(this, 'sourceNumber');" filtered="false"></select>
                     </td>
                     <td><span id="f2" class="hide">*</span></td>
                 </tr>                 
@@ -56,7 +51,7 @@
         </form>
         <div w3-include-html="/footer.html"></div>
         <script>
-            includeHTML();
+            includeHTML(updateCopyrightYear);
             const dropDownInstructions = "--Select an account--";
             var queryString = location.search; 
             var customerId = queryString.substring(queryString.indexOf('=') + 1);
@@ -148,7 +143,7 @@
                         }
                     }
                 };
-                xhr.open("PUT", "http://localhost:8080/api/money-transfer/account/transfer");
+                xhr.open("PUT", "http://localhost:8080/api/v1/money-transfer/account/transfer");
                 xhr.setRequestHeader("Content-Type", "application/json");
                 //Must send header so back-end can check for concurrent updates:
                 xhr.setRequestHeader("If-Match", getTransferVersion(transferForm, "-"));

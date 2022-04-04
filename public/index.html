@@ -23,25 +23,25 @@
                 background-color: #f2f2f2
             }
         </style>
-        <script src="/javascripts/include.js"></script>
+        <script src="/javascripts/copyright.js"></script>
+        <script src="/javascripts/w3-include.js"></script>
     </head>
     <body>
         <div w3-include-html="/header.html"></div>
         <h2>Customer List</h2>
         <div class="navbar">
             <ul>
-                <li><a href="javascript:void(0)"
-                       onclick="open('/addcust.html', 'addCustomerPopup', 'width=600, height=600, left=0, top=0')">Add Customer</a></li>
-                <li><a href="https://github.com/peter-sattler/money-transfer-ui/blob/master/README.md">About</a></li>
+                <li><a href="javascript:void(0)" onclick="open('/addcust.html', 'addCustomerPopup', 'width=600, height=600, left=0, top=0')">Add Customer</a></li>
+                <li><a href="https://github.com/peter-sattler/money-transfer-ui/blob/main/README.md">About</a></li>
             </ul>
         </div>     
         <div id="customers"></div>
         <div w3-include-html="/footer.html"></div>
     </body>
     <script>
-        includeHTML();
+        includeHTML(updateCopyrightYear);
         var xhr = new XMLHttpRequest();
-        xhr.open("GET", "http://localhost:8080/api/money-transfer/customers");
+        xhr.open("GET", "http://localhost:8080/api/v1/money-transfer/customers");
         xhr.onreadystatechange = function() {
             if(xhr.readyState === 4) {
                 if(xhr.status == 0 || xhr.status === 200) {
@@ -100,7 +100,7 @@
             document.getElementById("customers").innerHTML = content;
         }
 
-        /**********************************************/ß
+        /**********************************************/
         /* Let user know that no customers were found */
         /**********************************************/
         function displayNoCustomers() {

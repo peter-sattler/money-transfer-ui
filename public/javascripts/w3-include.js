@@ -1,7 +1,7 @@
 /*****************************/
 /* Include all HTML snippets */
 /*****************************/
-function includeHTML() {
+function includeHTML(callback) {
     var elements = document.getElementsByTagName("*");
     for (var i = 0; i < elements.length; i++) {
         var element = elements[i];
@@ -15,7 +15,7 @@ function includeHTML() {
                     if (this.status == 404) 
                         element.innerHTML = "Page not found.";
                     element.removeAttribute("w3-include-html");
-                    includeHTML();
+                    includeHTML(callback);
                 }
             }
             xhr.open("GET", includeFile);
@@ -23,4 +23,6 @@ function includeHTML() {
             return;
         }
     }
+    if (callback)
+        callback();
 }

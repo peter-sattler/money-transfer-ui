@@ -17,15 +17,21 @@ These instructions will get you a copy of this project up and running on your lo
 2. Clone this Git repository:
 ```text
 git clone https://github.com/peter-sattler/money-transfer-ui
+```
+3. Switch to the application directory:
+```text
 cd money-transfer-ui
 ```
-3. Install and start the [Express Web Server](https://expressjs.com): 
+4. Install the [Express Web Server](https://expressjs.com): 
 ```text
 npm update
+```
+5. Start the web server: 
+```text
 npm start
 ```
-4. Install and start the [Money Transfer REST API](https://github.com/peter-sattler/money-transfer-api/blob/main/README.md#getting-started).
-5. Once both back-end services are running, the application's home page will be available [here](http://localhost:3000).
+6. Install and start the [Money Transfer REST API](https://github.com/peter-sattler/money-transfer-api/blob/main/README.md#getting-started).
+7. Once both back-end services are running, the application's home page will be available [here](http://localhost:3000).
 
 ## Personal Goal 
 

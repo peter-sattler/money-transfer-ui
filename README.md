@@ -48,7 +48,7 @@ Like any evil empire, our journey to world domination starts in _Toon Town_.
 ## Implementation Details
 
 :moneybag: Implemented using HTML, CSS and Javascript (including AJAX)  
-:moneybag: Static content is served via an embedded Express web server (https://expressjs.com)  
+:moneybag: Static content is served via an embedded [Express Web Server](https://expressjs.com)  
 :moneybag: The [JSON generator](https://next.json-generator.com) was used to create the initial test data  
 
 ## Assumptions / Limitations 
